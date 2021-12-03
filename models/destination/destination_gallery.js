@@ -2,23 +2,27 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const schema = Schema({
-  images: [String],
-  videos: [String],
-  // caption: String,
-  description: {
-    type: String,
-    default: "",
+  destination: {
+    type: Schema.Types.ObjectId,
+    ref: "destination",
   },
+  title: String,
+  location: String,
+  fileUrl: [String],
   mediaType: {
     type: String,
     enum: ["image", "video"],
-    required: true,
   },
-  flag: {
+  tags: [String],
+  type: {
+    type: String,
+    enum: ["preview", "overview", "events"],
+  },
+  status: {
     type: Boolean,
     default: true,
   },
-  activeStatus: {
+  flag: {
     type: Boolean,
     default: true,
   },
@@ -29,7 +33,4 @@ const schema = Schema({
   updatedDate: Date,
 });
 
-// Create an index on `createdDate`
-schema.index({ createdDate: 1 });
-
-module.exports = mongoose.model("place", schema);
+module.exports = mongoose.model("destination_gallery", schema);

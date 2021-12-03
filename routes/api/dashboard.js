@@ -4,7 +4,7 @@ const passport = require("passport");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const User = require("../../models/user/User");
-const Place = require("../../models/destination/place");
+const Destination = require("../../models/destination/destination");
 const auth = passport.authenticate("jwt", { session: false });
 const { isAdmin } = require("../../middlewares/checkRole");
 
@@ -20,7 +20,9 @@ router.get("/list", auth, isAdmin, async (req, res) => {
       flag: true,
       activeStatus: true,
     }).countDocuments();
-    let destinationsCount = await Place.find({ flag: true }).countDocuments();
+    let destinationsCount = await Destination.find({
+      flag: true,
+    }).countDocuments();
     res.json({
       status: true,
       message: "Dashboard data fetched successfully",

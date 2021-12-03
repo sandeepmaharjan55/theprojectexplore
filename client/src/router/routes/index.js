@@ -1,21 +1,39 @@
 import { lazy, Redirect } from "react";
 
 // ** Document title
-const TemplateTitle = "%s - NEFSCUN MIS ";
+const TemplateTitle = "%s - Project Nepal ";
 
 // ** Default Route
 const DefaultRoute = "/";
 
 // ** Merge Routes
 const Routes = [
+  // {
+  //   path: "/",
+  //   className: "nefscun-mis",
+  //   component: lazy(() => import("../../views/frontend/Homepage")),
+  //   layout: "BlankLayout",
+  //   meta: {
+  //     publicRoute: true,
+  //   },
+  // },
+  // {
+  //   path: "/",
+  //   component: lazy(() => import("../../views/frontend/Homepage"), "default"),
+  //   // component: lazy(() => import("../../views/frontend/Homepage")),
+  //   layout: "BlankLayout",
+  // },
   {
-    path: "/",
-    component: lazy(() => import("../../views/Homepage")),
-    layout: "NefscunUserLayout",
+    path: "/sad",
+    component: lazy(() => import("../../views/frontend/Homepage")),
+    layout: "BlankLayout",
+    meta: {
+      publicRoute: false,
+    },
   },
   {
     path: "/home",
-    component: lazy(() => import("../../views/Home")),
+    component: lazy(() => import("../../views/admin/admins")),
     layout: "NefscunUserLayout",
   },
   {

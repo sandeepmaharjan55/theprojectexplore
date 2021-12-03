@@ -22,7 +22,7 @@ module.exports = {
     eqeqeq: "error",
     //'no-invalid-this': 'error',
     "no-return-assign": "error",
-    "no-unused-expressions": ["error", { allowTernary: true }],
+    // "no-unused-expressions": ["error", { allowTernary: true }],
     // /'no-useless-concat': 'error',
     "no-useless-return": "error",
 
@@ -47,10 +47,10 @@ module.exports = {
     // 'no-lonely-if': 'error',
     "no-mixed-operators": "error",
     "no-multiple-empty-lines": ["error", { max: 2, maxEOF: 1 }],
-    "no-tabs": "error",
+    // "no-tabs": "error",
     "no-unneeded-ternary": "error",
     "no-whitespace-before-property": "error",
-    "nonblock-statement-body-position": "error",
+    // "nonblock-statement-body-position": "error",
     "object-property-newline": [
       "error",
       { allowAllPropertiesOnSameLine: true },

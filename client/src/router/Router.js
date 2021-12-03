@@ -21,7 +21,7 @@ import {
 
 // ** Routes & Default Routes
 import { DefaultRoute, Routes } from "./routes";
-
+import FirstScreenHomepage from "../../src/views/frontend/Homepage";
 // ** Layouts
 import BlankLayout from "@layouts/BlankLayout";
 import VerticalLayout from "@src/layouts/VerticalLayout";
@@ -224,13 +224,14 @@ const Router = () => {
             return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
           }}
         /> */}
-        <Route
+        <Route exact path="/" component={FirstScreenHomepage} />
+        {/* <Route
           exact
           path="/"
           render={() => {
             return <Redirect to={DefaultRoute} />;
           }}
-        />
+        /> */}
         {/* Not Auth Route */}
         <Route
           exact

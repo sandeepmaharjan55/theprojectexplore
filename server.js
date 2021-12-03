@@ -48,18 +48,21 @@ require("./routes/")(app); //all routes
 
 //if client ask for any file or assets
 if (true || process.env.NODE_ENV === "production") {
-	// Express will serve up production assetes
-	// Like our main .js file r main.css file!
+  // Express will serve up production assetes
+  // Like our main .js file r main.css file!
 
-	app.use(express.static("client/build"));
+  app.use(express.static("client/build"));
 
-	// Express will serve up the index.html file
-	// if it doesnot recognize the route
-	// const path = require("path");
-	app.use("/public", express.static("public"));
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-	});
+  // Express will serve up the index.html file
+  // if it doesnot recognize the route
+  // const path = require("path");
+  app.use("/public", express.static("public"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, "projectFrontend", "index.html"));
+  // });
 }
 // app.use("/uploads", express.static("uploads"));
 //booted up the server
