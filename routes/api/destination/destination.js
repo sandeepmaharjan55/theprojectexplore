@@ -76,4 +76,35 @@ router.post("/store", auth, async (req, res) => {
   }
 });
 
+// @route:  GET api/destination/delete
+// @desc:   delete destination
+// @access: auth
+
+router.post(
+	"/delete",
+auth,
+	async (req, res) => {
+		try {
+      // console.log("m here delete");
+      // console.log(req);
+			let udpatedDocument = await Destination.findOneAndUpdate({
+				_id: ObjectId(req.body.id),
+				flag: true,
+			}, {
+				$set: {
+					flag: false
+				}
+			}, {
+				new: true
+			});
+// console.log("sad");
+			if (udpatedDocument) res.json({
+				message: "Item successfully deleted"
+			});
+			else res.status(406).json({
+				message: "Sorry! Cannot delete now."
+			});
+		} catch (error) {}
+	}
+);
 module.exports = router;

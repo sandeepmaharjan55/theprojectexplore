@@ -170,8 +170,7 @@ const Login = () => {
 
               <Form className="auth-login-form mt-2" onSubmit={submitForm}>
                 <FormGroup>
-                  <Label className="form-label" for="lusername">
-                    Username
+                  <Label className="form-label" for="lusername">Username
                   </Label>
                   <Input
                     type="text"

@@ -11,7 +11,7 @@ export let data
  const clickMe = (parameter) => (event) => {
   // Do something
   console.log(parameter);
-    fetch(`${config.baseUrl}/products/category/delete`, {
+    fetch(`${config.baseUrl}/destination/delete`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,14 +28,26 @@ export let data
 // ** Table Adv Search Column
 export const advSearchColumns = [
   {
-    name: 'Category Title',
+    name: 'Destination_Name',
     selector: 'name',
     sortable: true,
     minWidth: '200px'
   },
   {
-    name: 'Slug',
-    selector: 'slug',
+    name: 'Description',
+    selector: 'desC',
+    sortable: true,
+    minWidth: '100px'
+  },
+  {
+    name: 'Dest_type',
+    selector: 'type',
+    sortable: true,
+    minWidth: '100px'
+  },
+  {
+    name: 'Difficulty',
+    selector: 'difficulty',
     sortable: true,
     minWidth: '100px'
   },

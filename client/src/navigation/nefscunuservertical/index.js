@@ -20,7 +20,7 @@ export default [
       },
       {
         id: 'artistList',
-        title: 'Artists',
+        title: 'Guides',
         icon: <Circle size={12} />,
         navLink: '/admin/artist'
       },
@@ -34,151 +34,175 @@ export default [
   },  
   {
     id: 'category',
-    title: 'Category',
+    title: 'Destination Tab',
     icon: <Columns size={20} />,
     children: [
+      // {
+      //   id: 'categorylist',
+      //   title: 'Destination',
+      //   icon: <Circle size={12} />,
+      //   navLink: '/admin/category'
+      // },
       {
-        id: 'categorylist',
-        title: 'Category List',
+        id: 'destinationlist',
+        title: 'Destination',
         icon: <Circle size={12} />,
-        navLink: '/admin/category'
-      }
-    ]
-  },
-  {
-    id: 'designs',
-    title: 'Designs',
-    icon: <Heart size={20} />,
-    children: [
-      {
-        id: 'verifiedList',
-        title: 'Verified List',
-        icon: <Heart size={12} />,
-        navLink: '/admin/designs/verifiedDesigns'
+        navLink: '/admin/destination'
       },
       {
-        id: 'unverifiedList',
-        title: 'Un-Verified List',
-        icon: <Heart size={12} />,
-        navLink: '/admin/designs/unverifiedDesigns'
-      }
-    ]
-  },
-  {
-    id: 'banner',
-    title: 'Banner',
-    icon: <Columns size={20} />,
-    children: [
-      {
-        id: 'bannerlist',
-        title: 'Banner List',
+        id: 'destinationoverviewlist',
+        title: 'Destination Overview',
         icon: <Circle size={12} />,
-        navLink: '/admin/banner'
+        navLink: '/admin/destination'
+      },
+      {
+        id: 'destinationgallerylist',
+        title: 'Destination Gallery',
+        icon: <Circle size={12} />,
+        navLink: '/admin/destination'
+      },
+      {
+        id: 'destinationeventlist',
+        title: 'Destination Event',
+        icon: <Circle size={12} />,
+        navLink: '/admin/destination'
       }
     ]
   },
+  // {
+  //   id: 'designs',
+  //   title: 'Designs',
+  //   icon: <Heart size={20} />,
+  //   children: [
+  //     {
+  //       id: 'verifiedList',
+  //       title: 'Verified List',
+  //       icon: <Heart size={12} />,
+  //       navLink: '/admin/designs/verifiedDesigns'
+  //     },
+  //     {
+  //       id: 'unverifiedList',
+  //       title: 'Un-Verified List',
+  //       icon: <Heart size={12} />,
+  //       navLink: '/admin/designs/unverifiedDesigns'
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: 'banner',
+  //   title: 'Banner',
+  //   icon: <Columns size={20} />,
+  //   children: [
+  //     {
+  //       id: 'bannerlist',
+  //       title: 'Banner List',
+  //       icon: <Circle size={12} />,
+  //       navLink: '/admin/banner'
+  //     }
+  //   ]
+  // },
 
-  {
-    id: 'Purchases',
-    title: 'Purchases ',
-    icon: <ShoppingCart size={12} />,
-    navLink: '/admin/purchase'
-  },
-  {
-    id: 'Notification',
-    title: 'Notification ',
-    icon: <Navigation size={12} />,
-    navLink: '/admin/notification'
-  },
-  {
-    id: 'SupportList',
-    title: 'Support ',
-    icon: <HelpCircle size={12} />,
-    navLink: '/admin/support'
+//   {
+//     id: 'Purchases',
+//     title: 'Purchases ',
+//     icon: <ShoppingCart size={12} />,
+//     navLink: '/admin/purchase'
+//   },
+//   {
+//     id: 'Notification',
+//     title: 'Notification ',
+//     icon: <Navigation size={12} />,
+//     navLink: '/admin/notification'
+//   },
+//   {
+//     id: 'SupportList',
+//     title: 'Support ',
+//     icon: <HelpCircle size={12} />,
+//     navLink: '/admin/support'
   
-},
-  {
-    id: 'termsandcondition',
-    title: 'Terms & Condition ',
-    icon: <Sliders size={12} />,
-    navLink: '/admin/terms'
-  },
-  {
-    id: 'privacypolicy',
-    title: 'Privacy Policy',
-    icon: <Wind size={12} />,
-    navLink: '/admin/privacy'
-  },
-  {
-    id: 'newsfeedreported',
-    title: 'News Feed',
-    icon: <Wind size={12} />,
-    navLink: '/admin/newsfeed'
-  },
-  {
-    id: 'transaction',
-    title: 'Transaction',
-    icon: <Columns size={20} />,
-    children: [
-      {
-        id: 'tattoo',
-        title: 'Tattoo Appointment',
-        icon: <Circle size={12} />,
-        children: [
-          {
-            id: 'tattoopaidlist',
-            title: 'Paid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/tattoopaidlist'
-          },
-          {
-            id: 'tattoounpaidlist',
-            title: 'UnPaid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/tattoounpaidlist'
-          }
-        ]
-      },
-      {
-        id: 'artist',
-        title: 'Artist Appointment',
-        icon: <Circle size={12} />,
-        children: [
-          {
-            id: 'artistpaidlist',
-            title: 'Paid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/artistpaidlist'
-          },
-          {
-            id: 'artistunpaidlist',
-            title: 'UnPaid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/artistunpaidlist'
-          }
-        ]
-      },
-      {
-        id: 'purchase',
-        title: 'Purchase',
-        icon: <Circle size={12} />,
-        children: [
-          {
-            id: 'purchasepaidlist',
-            title: 'Paid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/purchasepaidlist'
-          },
-          {
-            id: 'purchaseunpaidlist',
-            title: 'UnPaid List',
-            icon: <Circle size={12} />,
-            navLink: '/admin/transaction/purchaseunpaidlist'
-          }
-        ]
-      }
-    ]
-  },
+// },
+  // {
+  //   id: 'termsandcondition',
+  //   title: 'Terms & Condition ',
+  //   icon: <Sliders size={12} />,
+  //   navLink: '/admin/terms'
+  // },
+  // {
+  //   id: 'privacypolicy',
+  //   title: 'Privacy Policy',
+  //   icon: <Wind size={12} />,
+  //   navLink: '/admin/privacy'
+  // },
+  // {
+  //   id: 'newsfeedreported',
+  //   title: 'News Feed',
+  //   icon: <Wind size={12} />,
+  //   navLink: '/admin/newsfeed'
+  // },
+  // {
+  //   id: 'transaction',
+  //   title: 'Transaction',
+  //   icon: <Columns size={20} />,
+  //   children: [
+  //     {
+  //       id: 'tattoo',
+  //       title: 'Tattoo Appointment',
+  //       icon: <Circle size={12} />,
+  //       children: [
+  //         {
+  //           id: 'tattoopaidlist',
+  //           title: 'Paid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/tattoopaidlist'
+  //         },
+  //         {
+  //           id: 'tattoounpaidlist',
+  //           title: 'UnPaid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/tattoounpaidlist'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       id: 'artist',
+  //       title: 'Artist Appointment',
+  //       icon: <Circle size={12} />,
+  //       children: [
+  //         {
+  //           id: 'artistpaidlist',
+  //           title: 'Paid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/artistpaidlist'
+  //         },
+  //         {
+  //           id: 'artistunpaidlist',
+  //           title: 'UnPaid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/artistunpaidlist'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       id: 'purchase',
+  //       title: 'Purchase',
+  //       icon: <Circle size={12} />,
+  //       children: [
+  //         {
+  //           id: 'purchasepaidlist',
+  //           title: 'Paid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/purchasepaidlist'
+  //         },
+  //         {
+  //           id: 'purchaseunpaidlist',
+  //           title: 'UnPaid List',
+  //           icon: <Circle size={12} />,
+  //           navLink: '/admin/transaction/purchaseunpaidlist'
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
   {
     title: 'Logout',
     navLink: '/admin/logout',

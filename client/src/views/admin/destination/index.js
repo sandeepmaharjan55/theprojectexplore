@@ -7,7 +7,7 @@ import { Fragment } from 'react'
 import { Row, Col } from 'reactstrap'
 
 
-import CategoryManage from './categoryManage'
+import DestinationManage from './destinationManage'
 
 // ** Styles
 import '@styles/react/libs/tables/react-dataTable-component.scss'
@@ -18,7 +18,7 @@ const Tables = () => {
      
       <Row>
         <Col sm='12'>
-          <CategoryManage />
+          <DestinationManage />
         </Col>
       </Row>
     </Fragment>
