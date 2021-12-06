@@ -34,6 +34,7 @@ const DestinationOverviewList = () => {
 
   const [currentPage, setCurrentPage] = useState(0)
   const [data, setData] = useState()
+  const [dataOverview, setDataOverview] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const [filteredData, setFilteredData] = useState([])
   const [_id, setId] = useState(0);
@@ -86,6 +87,7 @@ const DestinationOverviewList = () => {
   const saveDestination = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+    // console.log(formData);
     axios.post(`${config.baseUrl}/destinationoverview/store`,
       formData, {
       headers: {
@@ -179,7 +181,7 @@ const DestinationOverviewList = () => {
   const columns = [
     {
       name: 'Destination_Name',
-      selector: 'destination',
+      selector: 'destination.name',
       sortable: true,
       minWidth: '200px'
     },
@@ -279,42 +281,66 @@ const DestinationOverviewList = () => {
 
       })
       .then(response => {
+        // console.log(response.data.data);
         setData(response.data.data)
 
+      });
+      axios
+      .get(`${config.baseUrl}/destination/list`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: userData.token
+        }
+
       })
+      .then(response => {
+        // console.log(response.data.data);
+        setDataOverview(response.data.data)
+
+      });
   }, [reload]);
 
+  
   return (
     <Fragment>
       <Card>
         <CardHeader className='flex-md-row flex-column align-md-items-center align-items-start border-bottom'>
           <CardTitle tag='h4'>Destination Overview Management  </CardTitle>
 
-          <Modal isOpen={modal} toggle={() => setModal(!modal)} className='modal-dialog-centered'>
+          <Modal isOpen={modal} toggle={() => setModal(!modal)} className='modal-dialog-centered' >
             <ModalHeader toggle={() => setModal(!modal)}>Add New Overview</ModalHeader>
             <Form className='auth-register-form mt-2' onSubmit={saveDestination}>
               <ModalBody>
                 <FormGroup>
-                  <div className="d-flex justify-content-between">
+                 
                     <Label for='destinationInfo'>Destination Name:</Label>
                     {/* <Input class="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' /> */}
-                    <select class="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
-                    <option value="61adb9a2cce5e32bd74d4204">Kathmandu</option>
-                    <option value="61adc4fbcce5e32bd74d4205">Pokhara</option>
-                    <option value="61add88e7c5797a823069fcb">Chitwan</option>
+                   
+                    {/* <select class="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+                    <option value='${destination._id}'>'${destination.name}'</option>
+                  </select> */}
+                  <select class="form-control" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+                    {/* <option value='${destination._id}'>'${destination.name}'</option> */}
+                    {dataOverview.map((item) => {
+                      // console.log(item.destination.name);
+                      return (
+                        <option value={item._id}>{item.name}</option>
+                      )
+                    })}
                   </select>
-                    <Label for='destinationInfo'>Temperature:</Label>
-                    <Input class="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
-                  </div>
+                 
                 </FormGroup>
                 <FormGroup>
-
+                <div className="d-flex justify-content-between">
+                <Label for='destinationInfo'>Temperature:</Label>
+                    <Input class="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
                   <Label for='destinationInfo'>Temp Unit:</Label>
 
                   <select class="form-control" value={tempUnit} onChange={(e) => setDestinationOverviewTempUnit(e.target.value)} name="tempUnit" id='tempUnit' >
                     <option value="centigrade">°C</option>
                     <option value="fahrenheit">°F</option>
                   </select>
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <div className="d-flex justify-content-between">

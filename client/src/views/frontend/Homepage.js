@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 // import "./assets/css/global.css";
-import "./assets/css/index.css";
-import "./assets/css/global.css";
-import "./assets/css/insidefile.css";
+// import "./assets/css/index.css";
+// import "./assets/css/global.css";
+// import "./assets/css/insidefile.css";
 import TopPart from "./Top";
 import AfterTopPart from "./AfterTop";
 

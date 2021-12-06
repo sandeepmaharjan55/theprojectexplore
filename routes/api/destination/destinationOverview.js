@@ -20,9 +20,16 @@ router.get("/list", auth, async (req, res) => {
       }
       // "createdDate images videos description mediaType"
     )
+    .populate({
+      path: "destination",
+      match: {
+        flag: true
+      },
+      select: "_id name",
+    })
       .sort({ createdDate: -1 })
       .lean();
-
+// console.log(result);
     return res.json({
       status: true,
       message: "Destinations overview successfully fetched",
@@ -42,10 +49,10 @@ router.get("/list", auth, async (req, res) => {
 router.post("/store", auth, async (req, res) => {
   try {
     const isExists = await DestinationOverview.findOne({
-      destination: req.body.destinationId,
+      destination: req.body.destination,
       flag: true,
     });
-
+// console.log(req);
     if (isExists)
       return res.status(404).json({
         status: false,
@@ -53,8 +60,8 @@ router.post("/store", auth, async (req, res) => {
       });
     else {
       var documentBody = {};
-      if (req.body.destinationId)
-        documentBody.destination = req.body.destinationId;
+      if (req.body.destination)
+        documentBody.destination = req.body.destination;
       if (req.body.temperature) documentBody.temperature = req.body.temperature;
       if (req.body.tempUnit) documentBody.tempUnit = req.body.tempUnit;
       if (req.body.cons) documentBody.cons = req.body.cons;
@@ -90,4 +97,35 @@ router.post("/store", auth, async (req, res) => {
   }
 });
 
+// @route:  GET api/destinationoverview/delete
+// @desc:   delete destinationoverview
+// @access: auth
+
+router.post(
+	"/delete",
+auth,
+	async (req, res) => {
+		try {
+      // console.log("m here delete");
+      // console.log(req);
+			let udpatedDocument = await DestinationOverview.findOneAndUpdate({
+				_id: ObjectId(req.body.id),
+				flag: true,
+			}, {
+				$set: {
+					flag: false
+				}
+			}, {
+				new: true
+			});
+// console.log("sad");
+			if (udpatedDocument) res.json({
+				message: "Item successfully deleted"
+			});
+			else res.status(406).json({
+				message: "Sorry! Cannot delete now."
+			});
+		} catch (error) {}
+	}
+);
 module.exports = router;
