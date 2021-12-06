@@ -2,44 +2,52 @@
 // ** Third Party Components
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { MoreVertical, Edit, UserPlus, Archive, Trash, Eye, Mail } from 'react-feather'
+const userData = JSON.parse(localStorage.getItem('userData'));
 
 
 export let data
 
  // ** Function to delete a category
- const saveProductId = (parameter) => (event) => {
-   console.log("currentIdList=" + parameter)
-  localStorage.setItem('currentId', parameter); 
+ const clickMe = (parameter) => (event) => {
+  // Do something
+  console.log(parameter);
+    fetch(`${config.baseUrl}/destinationoverview/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:  userData.token
+      },
+      parameter:{ids: parameter}
+    })
+    .then(response => response.json())
+    .then(data => { 
+      console.log(data);
+    alert(data.message)
+    })
 }
 // ** Table Adv Search Column
 export const advSearchColumns = [
   {
-    name: 'Id',
-    selector: '_id',
+    name: 'Destination_Name',
+    selector: 'name',
     sortable: true,
     minWidth: '200px'
   },
   {
-    name: 'Title',
-    selector: 'title',
-    sortable: true,
-    minWidth: '200px'
-  },
-  {
-    name: 'Appointment Price',
-    selector: 'appointmentPrice',
+    name: 'Description',
+    selector: 'desC',
     sortable: true,
     minWidth: '100px'
   },
   {
-    name: 'Selling Price',
-    selector: 'sellingPrice',
+    name: 'Dest_type',
+    selector: 'type',
     sortable: true,
-    minWidth: '200px'
+    minWidth: '100px'
   },
   {
-    name: 'Verification',
-    selector: 'verification.isVerified',
+    name: 'Difficulty',
+    selector: 'difficulty',
     sortable: true,
     minWidth: '100px'
   },
@@ -54,10 +62,10 @@ export const advSearchColumns = [
                 <MoreVertical size={15} />
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem href={'/designs/details?_id=' + row._id} onClick = {saveProductId(row._id)}>
-                  <Eye className='mr-50' size={15} /> <span className='align-middle'>View Design</span>
+                <DropdownItem href='/'  >
+                  <Eye className='mr-50' size={15} /> <span className='align-middle'>Edit Category</span>
                 </DropdownItem>
-                <DropdownItem >
+                <DropdownItem  onClick = {clickMe(row._id)}>
                   <Trash className='mr-50' size={15} /> <span className='align-middle'>Delete Category</span>
                 </DropdownItem>
               </DropdownMenu>

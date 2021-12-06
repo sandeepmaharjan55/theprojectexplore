@@ -88,7 +88,7 @@ const DestinationList = () => {
    .then(function (response) {
         setModal(!modal)
         setReload(new Date())
-        toast.success(<Toast title="Category Saved Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
+        toast.success(<Toast title="Destination Saved Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
    })
    .catch(function (error) {
       if (error.response && error.response.status === 404) toast.error(<Toast title={error.response.data.message} text={error.response.data.message} type ="Error"/>, { autoClose: 3000, hideProgressBar: true })
@@ -99,10 +99,10 @@ const DestinationList = () => {
   }
 
   
-  const editCategory = (event) => {
+  const editDestination = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-     axios.post(`${config.baseUrl}/products/category/edit`,
+     axios.post(`${config.baseUrl}/destination/edit`,
       formData, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -112,7 +112,7 @@ const DestinationList = () => {
    .then(function (response) {
         setEditModal(!editModal)
         setReload(new Date())
-        toast.success(<Toast title="Category Edited Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
+        toast.success(<Toast title="Destination Edited Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
    })
    .catch(function (error) {
       if (error.response && error.response.status === 404) toast.error(<Toast title={error.response.data.message} text={error.response.data.message} type ="Error"/>, { autoClose: 3000, hideProgressBar: true })
@@ -137,7 +137,7 @@ const DestinationList = () => {
      console.log(response);
         //setModal(!modal)
         setReload(new Date())
-        toast.success(<Toast title="Category Deleted Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
+        toast.success(<Toast title="Destination Deleted Successfully!!" text="" type ="Success"/>, { autoClose: 3000, hideProgressBar: true })
    })
    .catch(function (error) {
       if (error.response && error.response.status === 400) toast.error(<Toast title={error.response.data.message} text={error.response.data.errors.Error} type ="Error"/>, { autoClose: 3000, hideProgressBar: true })
@@ -148,7 +148,7 @@ const DestinationList = () => {
 
   const handleConfirmTextDelete = (id) => {
     return MySwal.fire({
-      title: 'Are you sure you want to delete the Category?',
+      title: 'Are you sure you want to delete the Destination?',
       text: "",
       icon: 'info',
       showCancelButton: true,
@@ -289,24 +289,27 @@ const DestinationList = () => {
           {/* <FormGroup>
              <Input  value={_id}  name="_id" id='_id' hidden/>
               <Label for='destinationInfo'>Destination Name:</Label>
-              <Input type='text' value={categoryName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
+              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
             </FormGroup> */}
             <FormGroup>
             <div className="d-flex justify-content-between">
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Destination Name:</Label>
-              <Input type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
+              <Input class="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
             {/* </FormGroup>
             <FormGroup> */}
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Destination Sub Name:</Label>
-              <Input type='text' value={subName} required onChange={(e) => setDestinationSubName(e.target.value)} name="subName" id='subName' />
+              <Input class="form-control" type='text' value={subName} required onChange={(e) => setDestinationSubName(e.target.value)} name="subName" id='subName' />
            </div>
             </FormGroup>
             <FormGroup>
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Description:</Label>
-              <Input type='text' value={desC} required onChange={(e) => setDestinationDesc(e.target.value)} name="desC" id='desC' />
+              {/* <Input type='text' value={desC} required onChange={(e) => setDestinationDesc(e.target.value)} name="desC" id='desC' /> */}
+              <textarea class="form-control" type='text' value={desC} required onChange={(e) => setDestinationDesc(e.target.value)} name="desC" id='desC' >
+  Hello there, this is some text in a text area
+</textarea>
             {/* </FormGroup>
             <FormGroup> */}
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
@@ -317,7 +320,7 @@ const DestinationList = () => {
               <Label for='destinationInfo'>Destination Type:</Label>
               {/* <Input type='text' value={type} placeholder='city / trekking' required onChange={(e) => setDestinationType(e.target.value)} name="type" id='type' />
                */}
-       <select value={type} onChange={(e) => setDestinationType(e.target.value)} name="type" id='type' >
+       <select class="form-control" value={type} onChange={(e) => setDestinationType(e.target.value)} name="type" id='type' >
          <option value="city">City</option>
          <option value="trekking">Trekking</option>
         </select>
@@ -332,12 +335,12 @@ const DestinationList = () => {
             <div className="d-flex justify-content-between">
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>MinDays:</Label>
-              <Input type='number' value={minDays} required onChange={(e) => setDestinationMinDays(e.target.value)} name="minDays" id='minDays' />
+              <Input class="form-control" type='number' value={minDays} required onChange={(e) => setDestinationMinDays(e.target.value)} name="minDays" id='minDays' />
             {/* </FormGroup>
             <FormGroup> */}
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Best Seasons:</Label>
-              <Input type='text' value={bestSeasons} required onChange={(e) => setDestinationBestSeasons(e.target.value)} name="bestSeasons" id='bestSeasons' />
+              <Input class="form-control" type='text' value={bestSeasons} required onChange={(e) => setDestinationBestSeasons(e.target.value)} name="bestSeasons" id='bestSeasons' />
           </div>
             </FormGroup>
             <FormGroup>
@@ -349,12 +352,12 @@ const DestinationList = () => {
             <FormGroup> */}
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Accomodation:</Label>
-              <Input type='text' value={accomodation} required onChange={(e) => setDestinationAccomodation(e.target.value)} name="accomodation" id='accomodation' />
+              <Input class="form-control" type='text' value={accomodation} required onChange={(e) => setDestinationAccomodation(e.target.value)} name="accomodation" id='accomodation' />
             
               {/* <Label for='destinationInfo'>isRecommended:</Label>
               <Input type='text' value={isRecommended} required onChange={(e) => setDestinationIsRecommended(e.target.value)} name="isRecommended" id='isRecommended' /> */}
          <Label for='destinationInfo'>isRecommended:</Label>
-          <select value={isRecommended} onChange={(e) => setDestinationIsRecommended(e.target.value)} name="isRecommended" id='isRecommended' >
+          <select class="form-control" value={isRecommended} onChange={(e) => setDestinationIsRecommended(e.target.value)} name="isRecommended" id='isRecommended' >
          <option value="true">Yes</option>
          <option value="false">No</option>
         </select>
@@ -364,13 +367,13 @@ const DestinationList = () => {
             <div className="d-flex justify-content-between">
              {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
               <Label for='destinationInfo'>Max Altitude:</Label>
-              <Input type='text' value={maxAltitude} required onChange={(e) => setDestinationMaxAltitude(e.target.value)} name="maxAltitude" id='maxAltitude' />
+              <Input class="form-control" type='text' value={maxAltitude} required onChange={(e) => setDestinationMaxAltitude(e.target.value)} name="maxAltitude" id='maxAltitude' />
             {/* </FormGroup>
             <FormGroup> */}
               {/* <Label for='slug'>Slug:</Label>
               <Input type='text' value={slug} required onChange={(e) => setSlug(e.target.value)} name="slug" id='slug'/> */}
             <Label for='destinationInfo'>Difficulty:</Label>
-              <Input type='text' value={difficulty} required onChange={(e) => setDestinationDifficulty(e.target.value)} name="difficulty" id='difficulty' />
+              <Input class="form-control" type='text' value={difficulty} required onChange={(e) => setDestinationDifficulty(e.target.value)} name="difficulty" id='difficulty' />
     
             </div>
             </FormGroup>
@@ -386,12 +389,12 @@ const DestinationList = () => {
         {/* to edit another modal is added */}
         <Modal isOpen={editModal} toggle={() => setEditModal(!editModal)} className='modal-dialog-centered'>
           <ModalHeader toggle={() => setEditModal(!editModal)}>Edit Banner</ModalHeader>
-          <Form className='auth-register-form mt-2' onSubmit={editCategory}>
+          <Form className='auth-register-form mt-2' onSubmit={editDestination}>
           <ModalBody>
             {/* <FormGroup>
              <Input  value={_id}  name="_id" id='_id' hidden/>
-              <Label for='destinationInfo'>CategoryName:</Label>
-              <Input type='text' value={categoryName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
+              <Label for='destinationInfo'>DestinationName:</Label>
+              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
             </FormGroup> */}
             {/* <FormGroup>
               <Label for='slug'>Slug:</Label>

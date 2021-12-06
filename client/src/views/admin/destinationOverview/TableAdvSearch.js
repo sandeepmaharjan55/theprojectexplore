@@ -4,6 +4,7 @@ import axios from 'axios'
 // ** Table Columns
 import { data, advSearchColumns } from './data'
 import config from "../../../configs/config";
+import Sidebar from './Sidebar';
 import ReactPaginate from 'react-paginate'
 import { ChevronDown } from 'react-feather'
 import DataTable from 'react-data-table-component'
@@ -19,8 +20,10 @@ const DataTableAdvSearch = () => {
   const [searchSlug, setSearchSlug] = useState('')
   const [searchMobileNo, setSearchMobileNo] = useState('')
   const [currentPage, setCurrentPage] = useState(0)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [data, setData] = useState()
   const [filteredData, setFilteredData] = useState([])
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen)
   const userData = JSON.parse(localStorage.getItem('userData'));
 
 
@@ -87,7 +90,7 @@ const DataTableAdvSearch = () => {
 
   useState(() => {
     axios
-    .get(`${config.baseUrl}/products/purchase/list`, {
+    .get(`${config.baseUrl}/products/category/list`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -174,24 +177,26 @@ const DataTableAdvSearch = () => {
     <Fragment>
       <Card>
         <CardHeader className='border-bottom'>
-          <CardTitle tag='h4'>Purchase List</CardTitle>
-        
+          <CardTitle tag='h4'>Category List</CardTitle>
+          <Button.Ripple className='mt-1 mb-50 ml-10' color='primary' onClick={toggleSidebar}>
+            Add New Category
+        </Button.Ripple>
         </CardHeader>
         
         <CardBody>
           <Row form className='mt-1 mb-50'>
             <Col lg='3' md='6'>
               <FormGroup>
-                <Label for='name'>Purchase Name:</Label>
+                <Label for='name'>Category Name:</Label>
                 <Input id='name' placeholder='' value={searchName} onChange={handleNameFilter} />
               </FormGroup>
             </Col>
-            {/* <Col lg='3' md='6'>
+            <Col lg='3' md='6'>
               <FormGroup>
                 <Label for='email'>Slug:</Label>
                 <Input id='email' placeholder='##########' value={searchSlug} onChange={handleEmailFilter} />
               </FormGroup>
-            </Col>        */}
+            </Col>       
           </Row>
         </CardBody>
         <DataTable
@@ -207,6 +212,7 @@ const DataTableAdvSearch = () => {
         />
       </Card>
 
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} />
     </Fragment>
   )
 }

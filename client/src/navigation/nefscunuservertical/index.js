@@ -33,7 +33,7 @@ export default [
     ]
   },  
   {
-    id: 'category',
+     id: 'destination',
     title: 'Destination Tab',
     icon: <Columns size={20} />,
     children: [
@@ -53,19 +53,19 @@ export default [
         id: 'destinationoverviewlist',
         title: 'Destination Overview',
         icon: <Circle size={12} />,
-        navLink: '/admin/destination'
+        navLink: '/admin/destinationOverview'
       },
       {
         id: 'destinationgallerylist',
         title: 'Destination Gallery',
         icon: <Circle size={12} />,
-        navLink: '/admin/destination'
+        navLink: '/admin/destinationGallery'
       },
       {
         id: 'destinationeventlist',
         title: 'Destination Event',
         icon: <Circle size={12} />,
-        navLink: '/admin/destination'
+        navLink: '/admin/destinationEvent'
       }
     ]
   },
@@ -102,107 +102,107 @@ export default [
   //   ]
   // },
 
-//   {
-//     id: 'Purchases',
-//     title: 'Purchases ',
-//     icon: <ShoppingCart size={12} />,
-//     navLink: '/admin/purchase'
-//   },
-//   {
-//     id: 'Notification',
-//     title: 'Notification ',
-//     icon: <Navigation size={12} />,
-//     navLink: '/admin/notification'
-//   },
-//   {
-//     id: 'SupportList',
-//     title: 'Support ',
-//     icon: <HelpCircle size={12} />,
-//     navLink: '/admin/support'
+  // {
+  //   id: 'Purchases',
+  //   title: 'Purchases ',
+  //   icon: <ShoppingCart size={12} />,
+  //   navLink: '/admin/purchase'
+  // },
+  {
+    id: 'Notification',
+    title: 'Notification ',
+    icon: <Navigation size={12} />,
+    navLink: '/admin/notification'
+  },
+  {
+    id: 'SupportList',
+    title: 'Support ',
+    icon: <HelpCircle size={12} />,
+    navLink: '/admin/support'
   
-// },
-  // {
-  //   id: 'termsandcondition',
-  //   title: 'Terms & Condition ',
-  //   icon: <Sliders size={12} />,
-  //   navLink: '/admin/terms'
-  // },
-  // {
-  //   id: 'privacypolicy',
-  //   title: 'Privacy Policy',
-  //   icon: <Wind size={12} />,
-  //   navLink: '/admin/privacy'
-  // },
+},
+  {
+    id: 'termsandcondition',
+    title: 'Terms & Condition ',
+    icon: <Sliders size={12} />,
+    navLink: '/admin/terms'
+  },
+  {
+    id: 'privacypolicy',
+    title: 'Privacy Policy',
+    icon: <Wind size={12} />,
+    navLink: '/admin/privacy'
+  },
   // {
   //   id: 'newsfeedreported',
   //   title: 'News Feed',
   //   icon: <Wind size={12} />,
   //   navLink: '/admin/newsfeed'
   // },
-  // {
-  //   id: 'transaction',
-  //   title: 'Transaction',
-  //   icon: <Columns size={20} />,
-  //   children: [
-  //     {
-  //       id: 'tattoo',
-  //       title: 'Tattoo Appointment',
-  //       icon: <Circle size={12} />,
-  //       children: [
-  //         {
-  //           id: 'tattoopaidlist',
-  //           title: 'Paid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/tattoopaidlist'
-  //         },
-  //         {
-  //           id: 'tattoounpaidlist',
-  //           title: 'UnPaid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/tattoounpaidlist'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       id: 'artist',
-  //       title: 'Artist Appointment',
-  //       icon: <Circle size={12} />,
-  //       children: [
-  //         {
-  //           id: 'artistpaidlist',
-  //           title: 'Paid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/artistpaidlist'
-  //         },
-  //         {
-  //           id: 'artistunpaidlist',
-  //           title: 'UnPaid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/artistunpaidlist'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       id: 'purchase',
-  //       title: 'Purchase',
-  //       icon: <Circle size={12} />,
-  //       children: [
-  //         {
-  //           id: 'purchasepaidlist',
-  //           title: 'Paid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/purchasepaidlist'
-  //         },
-  //         {
-  //           id: 'purchaseunpaidlist',
-  //           title: 'UnPaid List',
-  //           icon: <Circle size={12} />,
-  //           navLink: '/admin/transaction/purchaseunpaidlist'
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // },
+  {
+    id: 'transaction',
+    title: 'Transaction',
+    icon: <Columns size={20} />,
+    children: [
+      {
+        id: 'tattoo',
+        title: 'Tattoo Appointment',
+        icon: <Circle size={12} />,
+        children: [
+          {
+            id: 'tattoopaidlist',
+            title: 'Paid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/tattoopaidlist'
+          },
+          {
+            id: 'tattoounpaidlist',
+            title: 'UnPaid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/tattoounpaidlist'
+          }
+        ]
+      },
+      {
+        id: 'artist',
+        title: 'Artist Appointment',
+        icon: <Circle size={12} />,
+        children: [
+          {
+            id: 'artistpaidlist',
+            title: 'Paid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/artistpaidlist'
+          },
+          {
+            id: 'artistunpaidlist',
+            title: 'UnPaid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/artistunpaidlist'
+          }
+        ]
+      },
+      {
+        id: 'purchase',
+        title: 'Purchase',
+        icon: <Circle size={12} />,
+        children: [
+          {
+            id: 'purchasepaidlist',
+            title: 'Paid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/purchasepaidlist'
+          },
+          {
+            id: 'purchaseunpaidlist',
+            title: 'UnPaid List',
+            icon: <Circle size={12} />,
+            navLink: '/admin/transaction/purchaseunpaidlist'
+          }
+        ]
+      }
+    ]
+  },
   {
     title: 'Logout',
     navLink: '/admin/logout',
