@@ -33,7 +33,7 @@ const Routes = [
   },
   {
     path: "/home",
-    component: lazy(() => import("../../views/admin/admins")),
+    component: lazy(() => import("../../views/Home")),
     layout: "NefscunUserLayout",
   },
   {

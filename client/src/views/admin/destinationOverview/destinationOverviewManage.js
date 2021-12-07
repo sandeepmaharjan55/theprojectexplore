@@ -23,26 +23,29 @@ import {
 } from 'reactstrap'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import "./tagsTypeOption.scss";
+
 const MySwal = withReactContent(Swal)
 
 const DestinationOverviewList = () => {
 
   const userData = JSON.parse(localStorage.getItem('userData'));
   // ** States
-  const [modal, setModal] = useState(false)
-  const [editModal, setEditModal] = useState(false)
+  const [modal, setModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(0)
-  const [data, setData] = useState()
-  const [dataOverview, setDataOverview] = useState([])
-  const [searchValue, setSearchValue] = useState('')
-  const [filteredData, setFilteredData] = useState([])
+  const [currentPage, setCurrentPage] = useState(0);
+  const [data, setData] = useState();
+  const [dataOverview, setDataOverview] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
   const [_id, setId] = useState(0);
 
   const [destination, setDestinationName] = useState('');
   const [temperature, setDestinationOverviewTemperature] = useState('');
   const [tempUnit, setDestinationOverviewTempUnit] = useState('');
   const [cons, setDestinationOverviewCons] = useState('');
+  // console.log(cons);
   const [pros, setDestinationOvervirePros] = useState('');
   const [languages, setDestinationOverviewLanguages] = useState('');
   const [religions, setDestinationOverviewReligions] = useState('');
@@ -53,6 +56,83 @@ const DestinationOverviewList = () => {
   const [airQuality, setDestinationOverviewAirQuality] = useState('');
   const [humidity, setDestinationOverviewHumidity] = useState('');
   const [lackOfCrime, setDestinationOverviewLackOfCrime] = useState('');
+
+  const [tagsCons, setTags] = useState([]);
+  const [tagsPros, setTagsPros] = useState([]);
+  const [tagsLanguage, setTagsLanguage] = useState([]);
+  const [tagsReligion, setTagsReligion] = useState([]);
+  const [tagsDestTags, setTagsDestTags] = useState([]);
+
+
+  //tag cons
+  const addTags = event => {
+    //console.log(event.target.value);
+    document.getElementById("cons").setAttribute('value', tagsCons);
+    if (event.key === "Shift" && event.target.value !== "") {
+      // console.log(event.target.index);
+      // tagsCons.push(event.target.value);
+      setTags([...tagsCons, event.target.value]);
+      // selectedTags([...tagsCons, event.target.value]);
+      event.target.value = "";
+      document.getElementById("cons").setAttribute('value', tagsCons);
+    }
+  };
+  const removeTags = indexToRemove => {
+    setTags([...tagsCons.filter((_, index) => index !== indexToRemove)]);
+    // document.getElementById("cons").setAttribute('value', tagsCons);
+  };
+  //tag pros
+  const addTagsPros = event => {
+    //console.log(event.target.value);
+    if (event.key === "Shift" && event.target.value !== "") {
+      setTagsPros([...tagsPros, event.target.value]);
+      event.target.value = "";
+      document.getElementById("pros").setAttribute('value', tagsPros);
+      // console.log(event.target.value);
+    }
+  };
+  const removeTagsPros = indexToRemove => {
+    setTagsPros([...tagsPros.filter((_, index) => index !== indexToRemove)]);
+  };
+    //tag languages
+    const addTagsLanguage = event => {
+      //console.log(event.target.value);
+      if (event.key === "Shift" && event.target.value !== "") {
+        setTagsLanguage([...tagsLanguage, event.target.value]);
+        event.target.value = "";
+        document.getElementById("languages").setAttribute('value', tagsLanguage);
+        // console.log(event.target.value);
+      }
+    };
+    const removeTagsLanguage = indexToRemove => {
+      setTagsLanguage([...tagsLanguage.filter((_, index) => index !== indexToRemove)]);
+    };
+        //tag religions
+        const addTagsReligion = event => {
+          //console.log(event.target.value);
+          if (event.key === "Shift" && event.target.value !== "") {
+            setTagsReligion([...tagsReligion, event.target.value]);
+            event.target.value = "";
+            document.getElementById("religions").setAttribute('value', tagsReligion);
+            // console.log(event.target.value);
+          }
+        };
+        const removeTagsReligion = indexToRemove => {
+          setTagsReligion([...tagsReligion.filter((_, index) => index !== indexToRemove)]);
+        };
+            //tag destination tags
+    const addTagsDestTags = event => {
+      // console.log(event.target.value);
+      if (event.key === "Shift" && event.target.value !== "") {
+        setTagsDestTags([...tagsDestTags, event.target.value]);
+        event.target.value = "";
+        document.getElementById("tagsData").setAttribute('value', tagsDestTags);
+        // console.log(event.target.value);
+      }
+    };
+    const removeTagsDestTags = indexToRemove => {
+      setTagsDestTags([...tagsDestTags.filter((_, index) => index !== indexToRemove)]);
+    };
   // const [slug, setSlug] = useState('')
   const [reload, setReload] = useState(new Date())
 
@@ -60,6 +140,7 @@ const DestinationOverviewList = () => {
   // ** Function to handle Modal toggle
   const handleModal = () => {
     setDestinationName()
+    // setDestinationOverviewCons(target.value = "")
     // setSlug()
     setModal(!modal)
   }
@@ -108,7 +189,7 @@ const DestinationOverviewList = () => {
 
   }
 
-//edit part
+  //edit part
   const editDestinationOverview = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -131,7 +212,7 @@ const DestinationOverviewList = () => {
       });
 
   }
-//delete part
+  //delete part
   const deleteDestinationOverview = (parameter) => {
     const formData = new FormData();
     formData.append('id', parameter);
@@ -197,24 +278,24 @@ const DestinationOverviewList = () => {
       sortable: true,
       minWidth: '100px'
     },
-    {
-      name: 'cons',
-      selector: 'cons',
-      sortable: true,
-      minWidth: '100px'
-    },
-    {
-      name: 'pros',
-      selector: 'pros',
-      sortable: true,
-      minWidth: '100px'
-    },
-    {
-      name: 'languages',
-      selector: 'languages',
-      sortable: true,
-      minWidth: '100px'
-    },
+    // {
+    //   name: 'cons',
+    //   selector: 'cons',
+    //   sortable: true,
+    //   minWidth: '100px'
+    // },
+    // {
+    //   name: 'pros',
+    //   selector: 'pros',
+    //   sortable: true,
+    //   minWidth: '100px'
+    // },
+    // {
+    //   name: 'languages',
+    //   selector: 'languages',
+    //   sortable: true,
+    //   minWidth: '100px'
+    // },
     {
       name: 'fun?',
       selector: 'fun',
@@ -285,7 +366,7 @@ const DestinationOverviewList = () => {
         setData(response.data.data)
 
       });
-      axios
+    axios
       .get(`${config.baseUrl}/destination/list`, {
         headers: {
           "Content-Type": "application/json",
@@ -300,7 +381,6 @@ const DestinationOverviewList = () => {
       });
   }, [reload]);
 
-  
   return (
     <Fragment>
       <Card>
@@ -309,94 +389,264 @@ const DestinationOverviewList = () => {
 
           <Modal isOpen={modal} toggle={() => setModal(!modal)} className='modal-dialog-centered' >
             <ModalHeader toggle={() => setModal(!modal)}>Add New Overview</ModalHeader>
-            <Form className='auth-register-form mt-2' onSubmit={saveDestination}>
+            <Form id="tagsform" className='auth-register-form mt-2' onSubmit={saveDestination}>
               <ModalBody>
                 <FormGroup>
-                 
-                    <Label for='destinationInfo'>Destination Name:</Label>
-                    {/* <Input class="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' /> */}
-                   
-                    {/* <select class="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+
+                  {/* <Label for='destinationInfo'>Destination Name:</Label> */}
+                  {/* <Input class="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' /> */}
+
+                  {/* <select class="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
                     <option value='${destination._id}'>'${destination.name}'</option>
                   </select> */}
-                  <select class="form-control" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
-                    {/* <option value='${destination._id}'>'${destination.name}'</option> */}
+
+                  {/* <select class="form-control" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+                
                     {dataOverview.map((item) => {
-                      // console.log(item.destination.name);
+                     
                       return (
                         <option value={item._id}>{item.name}</option>
                       )
                     })}
-                  </select>
-                 
-                </FormGroup>
-                <FormGroup>
-                <div className="d-flex justify-content-between">
-                <Label for='destinationInfo'>Temperature:</Label>
-                    <Input class="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
-                  <Label for='destinationInfo'>Temp Unit:</Label>
-
-                  <select class="form-control" value={tempUnit} onChange={(e) => setDestinationOverviewTempUnit(e.target.value)} name="tempUnit" id='tempUnit' >
-                    <option value="centigrade">°C</option>
-                    <option value="fahrenheit">°F</option>
-                  </select>
+                  </select> */}
+                  <div className="d-flex justify-content-between">
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Destination Name:
+                        <Input list="itemData" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' /></Label>
+                      <datalist id="itemData">
+                        {dataOverview.map((item) => {
+                          // console.log(item.destination.name);
+                          return (
+                            <option value={item._id}>{item.name}</option>
+                          )
+                        })}
+                      </datalist>
+                    </div>
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>lackOfCrime:
+                        <Input class="form-control" type='text' value={lackOfCrime} required onChange={(e) => setDestinationOverviewLackOfCrime(e.target.value)} name="lackOfCrime" id='lackOfCrime' />
+                      </Label>
+                    </div>
                   </div>
                 </FormGroup>
                 <FormGroup>
                   <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>cons:</Label>
-                    <Input class="form-control" type='text' value={cons} required onChange={(e) => setDestinationOverviewCons(e.target.value)} name="cons" id='cons' />
-                    <Label for='destinationInfo'>Pros:</Label>
-                    <Input class="form-control" type='text' value={pros} required onChange={(e) => setDestinationOvervirePros(e.target.value)} name="pros" id='pros' />
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Temperature:
+                        <Input class="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
+                      </Label>
+                    </div>
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Temp Unit:
+
+                        <select class="form-control" value={tempUnit} onChange={(e) => setDestinationOverviewTempUnit(e.target.value)} name="tempUnit" id='tempUnit' >
+                          <option value="centigrade">°C</option>
+                          <option value="fahrenheit">°F</option>
+                        </select>
+                      </Label>
+                    </div>
+                  </div>
+
+                </FormGroup>
+                <FormGroup>
+                  <Label for='destinationInfo'>cons:
+                    {/* <Input class="form-control" type='text' value={cons} required onChange={(e) => setDestinationOverviewCons(e.target.value)} name="cons" id='cons' /> */}
+
+                    <div className="tags-input">
+                      <ul id="tags">
+                        {tagsCons.map((tag, index) => (
+                            //  console.log(tag),
+                            //  console.log(index),  
+                            
+                          <li key={index} className="tag">
+                            <span className='tag-title'>{tag}</span>
+                            <span className='tag-close-icon'
+                              onClick={() => removeTags(index)}
+                            >
+                              x
+                            </span>
+                          </li>
+
+                        ))}
+                      </ul>
+                      <Input
+                        type="text" onKeyUp={
+                          event => (event.key === "Shift" ? addTags(event) : null)}
+                        placeholder="Press SHIFT to add cons"
+                      />
+                      <Input class="form-control" type='text' name="cons" id='cons' hidden />
+                    </div>
+                  </Label>
+                </FormGroup>
+                <FormGroup>
+                  <Label for='destinationInfo'>Pros:
+                    {/* <Input class="form-control" type='text' value={pros} required onChange={(e) => setDestinationOvervirePros(e.target.value)} name="pros" id='pros' /> */}
+                    <div className="tags-input">
+                      <ul id="tags">
+                        {tagsPros.map((tag, index) => (
+                          // console.log(tag),
+                          // console.log(index),
+                          <li key={index} className="tag">
+                            <span className='tag-title'>{tag}</span>
+                            <span className='tag-close-icon'
+                              onClick={() => removeTagsPros(index)}
+                            >
+                              x
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Input
+                        type="text"
+                        onKeyUp={
+                          event => (event.key === "Shift" ? addTagsPros(event) : null)}
+                        placeholder="Press SHIFT to add pros"
+                      />
+                      <Input class="form-control" type='text' name="pros" id='pros' hidden />
+                    </div>
+                  </Label>
+                </FormGroup>
+                <FormGroup>
+                  <div className="d-flex justify-content-between">
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>languages:
+                      <div className="tags-input">
+                      <ul id="tags">
+                        {tagsLanguage.map((tag, index) => (
+                          // console.log(tag),
+                          // console.log(index),
+                          <li key={index} className="tag">
+                            <span className='tag-title'>{tag}</span>
+                            <span className='tag-close-icon'
+                              onClick={() => removeTagsLanguage(index)}
+                            >
+                              x
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Input
+                        type="text"
+                        onKeyUp={
+                          event => (event.key === "Shift" ? addTagsLanguage(event) : null)}
+                        placeholder="Press SHIFT to add language"
+                      />
+                      <Input class="form-control" type='text' name="languages" id='languages' hidden />
+                    </div>
+                      </Label>
+                    </div>
+                  </div>
+                </FormGroup>
+                <FormGroup>
+                      <div className="d-flex justify-content-between">
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Religions:
+                      <div className="tags-input">
+                      <ul id="tags">
+                        {tagsReligion.map((tag, index) => (
+                          // console.log(tag),
+                          // console.log(index),
+                          <li key={index} className="tag">
+                            <span className='tag-title'>{tag}</span>
+                            <span className='tag-close-icon'
+                              onClick={() => removeTagsReligion(index)}
+                            >
+                              x
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Input
+                        type="text"
+                        onKeyUp={
+                          event => (event.key === "Shift" ? addTagsReligion(event) : null)}
+                        placeholder="Press SHIFT to add religion"
+                      />
+                      <Input class="form-control" type='text' name="religions" id='religions' hidden />
+                    </div>
+                      </Label>
+                    </div>
+                  </div>
+                    </FormGroup>
+                    <FormGroup>
+                      <div className="d-flex justify-content-between">
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Destination Tags:
+                      <div className="tags-input">
+                      <ul id="tags">
+                        {tagsDestTags.map((tag, index) => (
+                          // console.log(tag),
+                          // console.log(index),
+                          <li key={index} className="tag">
+                            <span className='tag-title'>{tag}</span>
+                            <span className='tag-close-icon'
+                              onClick={() => removeTagsDestTags(index)}
+                            >
+                              x
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <Input
+                        type="text"
+                        onKeyUp={
+                          event => (event.key === "Shift" ? addTagsDestTags(event) : null)}
+                        placeholder="Press SHIFT to add tags"
+                      />
+                      <Input class="form-control" type='text' name="tags" id='tagsData' hidden />
+                    </div>
+                      </Label>
+                    </div>
+                  </div>
+                    </FormGroup>
+                <FormGroup>
+                  <div className="d-flex justify-content-between">
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>landscapes:
+                        <Input class="form-control" type='text' value={landscapes} required onChange={(e) => setDestinationOverviewLandscapes(e.target.value)} name="landscapes" id='landscapes' />
+                      </Label>
+                    </div>
+                    {/* <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>tags:
+                        <Input class="form-control" type='text' value={tags} required onChange={(e) => setDestinationOverviewTags(e.target.value)} name="tags" id='tags' />
+                      </Label>
+                    </div> */}
                   </div>
                 </FormGroup>
                 <FormGroup>
                   <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>languages:</Label>
-                    <Input class="form-control" type='text' value={languages} required onChange={(e) => setDestinationOverviewLanguages(e.target.value)} name="languages" id='languages' />
-
-                    <Label for='destinationInfo'>religions:</Label>
-                    <Input class="form-control" type='text' value={religions} required onChange={(e) => setDestinationOverviewReligions(e.target.value)} name="religions" id='religions' />
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>internet:
+                        <Input class="form-control" type='text' value={internet} required onChange={(e) => setDestinationOverviewInternet(e.target.value)} name="internet" id='internet' />
+                      </Label>
+                    </div>
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>Fun:
+                        <Input class="form-control" type='text' value={fun} required onChange={(e) => setDestinationOverviewFun(e.target.value)} name="fun" id='fun' />
+                      </Label>
+                    </div>
                   </div>
                 </FormGroup>
                 <FormGroup>
                   <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>landscapes:</Label>
-                    <Input class="form-control" type='text' value={landscapes} required onChange={(e) => setDestinationOverviewLandscapes(e.target.value)} name="landscapes" id='landscapes' />
-
-                    <Label for='destinationInfo'>tags:</Label>
-                    <Input class="form-control" type='text' value={tags} required onChange={(e) => setDestinationOverviewTags(e.target.value)} name="tags" id='tags' />
-
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>airQuality:
+                        <Input class="form-control" placeholder="In number" type='number' value={airQuality} required onChange={(e) => setDestinationOverviewAirQuality(e.target.value)} name="airQuality" id='airQuality' />
+                      </Label>
+                    </div>
+                    <div style={{ "padding-right": "5px" }}>
+                      <Label for='destinationInfo'>humidity:
+                        <Input class="form-control" placeholder="In number" type='number' value={humidity} required onChange={(e) => setDestinationOverviewHumidity(e.target.value)} name="humidity" id='humidity' />
+                      </Label>
+                    </div>
                   </div>
                 </FormGroup>
-                <FormGroup>
+                {/* <FormGroup>
                   <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>internet:</Label>
-                    <Input class="form-control" type='text' value={internet} required onChange={(e) => setDestinationOverviewInternet(e.target.value)} name="internet" id='internet' />
-
-                    <Label for='destinationInfo'>Fun:</Label>
-                    <Input class="form-control" type='text' value={fun} required onChange={(e) => setDestinationOverviewFun(e.target.value)} name="fun" id='fun' />
+                   
 
                   </div>
-                </FormGroup>
-                <FormGroup>
-                  <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>airQuality:</Label>
-                    <Input class="form-control" type='number' value={airQuality} required onChange={(e) => setDestinationOverviewAirQuality(e.target.value)} name="airQuality" id='airQuality' />
-
-                    <Label for='destinationInfo'>humidity:</Label>
-                    <Input class="form-control" type='number' value={humidity} required onChange={(e) => setDestinationOverviewHumidity(e.target.value)} name="humidity" id='humidity' />
-
-                  </div>
-                </FormGroup>
-                <FormGroup>
-                  <div className="d-flex justify-content-between">
-                    <Label for='destinationInfo'>lackOfCrime:</Label>
-                    <Input class="form-control" type='text' value={lackOfCrime} required onChange={(e) => setDestinationOverviewLackOfCrime(e.target.value)} name="lackOfCrime" id='lackOfCrime' />
-
-
-                  </div>
-                </FormGroup>
+                </FormGroup> */}
               </ModalBody>
               <ModalFooter>
                 <Button color='primary' type="submit">
