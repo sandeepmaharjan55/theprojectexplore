@@ -1975,8 +1975,8 @@ html.is_ios_hybrid .ios-footer .badge {
 
 .new-user-hero {
   display: none;
-  border-top: 1px solid #dddddd;
-  border-bottom: 1px solid #dddddd;
+  /* border-top: 1px solid #dddddd; */
+  /* border-bottom: 1px solid #dddddd; */
   overflow: hidden;
   padding: 28px;
   padding-left: 28px;
@@ -2110,11 +2110,16 @@ html.is_ios_hybrid .ios-footer .badge {
     margin-bottom: 0.5em;
   }
 }
+/* edited sandeep */
 
-html:not(.filters-folded) .new-user-hero,
 html.map-view .new-user-hero {
   display: none !important;
 }
+/* original sandeep */
+/* html:not(.filters-folded) .new-user-hero,
+html.map-view .new-user-hero {
+  display: none !important;
+} */
 
 span.intro-credits {
   color: #fff;
@@ -2531,3 +2536,21 @@ html.map-view .vitrage-container {
 .traveling-today img:active {
   opacity: 0.5;
 }
+
+
+/* .new-user-hero.head-image .box {
+  border: 1px solid var(--input-border-color);
+  background: var(--element-background-color);
+  border-radius: 12px;
+  display: block;
+  z-index: 3;
+  padding: 28px;
+  right: 24px;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-40%);
+  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+  border: none;
+  box-shadow: var(--box-shadow-central);
+} */

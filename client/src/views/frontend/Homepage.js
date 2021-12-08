@@ -1,17 +1,22 @@
 import React, { Component } from "react";
-// import "./assets/css/global.css";
-// import "./assets/css/index.css";
-// import "./assets/css/global.css";
-// import "./assets/css/insidefile.css";
+
+import "./assets/css/index.css";
+import "./assets/css/global.css";
+import "./assets/css/insidefile.css";
+
 import TopPart from "./Top";
-import AfterTopPart from "./AfterTop";
+import Publisher from "./Publisher";
+import HeadTags from "./HeadTag";
+import TestFile from "./TestFile";
 
 export class Apsp extends Component {
   render() {
     return (
       <div>
-        <TopPart />
-        <AfterTopPart />
+        <HeadTags />
+        <TestFile />
+        {/* <TopPart /> */}
+        {/* <Publisher /> */}
       </div>
     );
   }

@@ -8,7 +8,8 @@ const schema = Schema({
   },
   title: String,
   location: String,
-  fileUrl: [String],
+  imageFileUrl: [String],
+  videoFileUrl: [String],
   mediaType: {
     type: String,
     enum: ["image", "video"],

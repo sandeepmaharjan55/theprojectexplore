@@ -6318,7 +6318,7 @@ input:focus {
   -ms-user-select: none;
   user-select: none;
 }
-.new-user-hero-press-featured img {
+/* .new-user-hero-press-featured img {
   min-width: 70px;
   filter: saturate(0%) brightness(61%) contrast(380%) contrast(50%)
     brightness(208%);
@@ -6328,7 +6328,7 @@ input:focus {
   margin-top: 14px;
   margin-bottom: 14px;
   vertical-align: middle;
-}
+} */
 .new-user-hero-press-featured img.lazyload {
   border-radius: 12px;
   filter: none;
