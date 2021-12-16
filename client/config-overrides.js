@@ -25,6 +25,11 @@ module.exports = function override(config, env) {
       use: [
         {
           loader: 'sass-loader',
+          
+            // loader: ExtractTextPlugin.extract(
+            //   'style-loader', // backup loader when not building .css file
+            //   'css-loader!sass-loader' // loaders to preprocess CSS
+            //  ),
           options: {
             sassOptions: {
               includePaths: ['node_modules', 'src/assets']
@@ -32,6 +37,25 @@ module.exports = function override(config, env) {
           }
         }
       ]
+    //   use:[// Creates `style` nodes from JS strings
+    //   "style-loader",
+    //   // Translates CSS into CommonJS
+    //   {
+    //     loader: "css-loader",
+    //     options: {
+    //       sourceMap: true,
+    //     },
+    //   },
+    //   // Compiles Sass to CSS
+    //     {
+    //       loader: 'sass-loader',
+    //       options: {
+    //         sassOptions: {
+    //           includePaths: ['node_modules', 'src/assets']
+    //         }
+    //       }
+    //     }
+    // ]
     })
     .rewire(config, env)
   return config

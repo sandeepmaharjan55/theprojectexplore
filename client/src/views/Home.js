@@ -55,7 +55,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs breadCrumbTitle='Inks Villa' breadCrumbParent='Stats'  />
+      <Breadcrumbs breadCrumbTitle='Project Explore' breadCrumbParent='Stats'  />
 
       <Row>
         {/* Stats With Icons */}

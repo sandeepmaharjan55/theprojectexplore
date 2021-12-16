@@ -30,3 +30,5 @@ eval $(ssh-agent -s) && ssh-add ~/.ssh/stn2015
 /client/.eslintcache
 
 /client/react-shell-scripts
+yarn-error.log
+yarn.lock

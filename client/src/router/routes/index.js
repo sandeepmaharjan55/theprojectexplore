@@ -25,7 +25,7 @@ const Routes = [
   // },
   {
     path: "/sad",
-    component: lazy(() => import("../../views/frontend/Homepage")),
+    component: lazy(() => import("../../views/frontend/pages/index")),
     layout: "BlankLayout",
     meta: {
       publicRoute: false,

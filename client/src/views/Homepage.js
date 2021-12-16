@@ -107,9 +107,9 @@ const Homepage = () => {
         >
           <Col className="px-xl-2 mx-auto" sm="8" md="6" lg="12">
             <CardTitle tag="h2" className="font-weight-bold mb-1">
-              Welcome to Project Nepal
+              Welcome to Project Explore
             </CardTitle>
-            <CardText className="mb-2">Admin Panel for Project Nepal</CardText>
+            <CardText className="mb-2">Admin Panel for Project Explore</CardText>
             <Button.Ripple tag={Link} to="/admin/login" color="primary" block>
               Admin Login
             </Button.Ripple>

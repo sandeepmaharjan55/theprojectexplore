@@ -1,0 +1,93 @@
+.containerTest {
+  position: relative;
+}
+
+.imageTest {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middleTest {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.containerTest:hover .image {
+  opacity: 0.3;
+}
+
+.containerTest:hover .middleTest {
+  opacity: 1;
+}
+
+.textTest {
+  /* background-color: #04AA6D; */
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+
+
+
+
+
+
+.item {
+    margin: 1rem 0;
+  }
+  /* .item:hover {
+    transform:scale(1.1, 1.1);
+  } */
+  .image {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+  
+  .image img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .content h3 {
+    font-size: 1.25rem;
+    color: #000000;
+  }
+  
+  .actions {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .actions button {
+    font: inherit;
+    cursor: pointer;
+    color: #77002e;
+    border: 1px solid #77002e;
+    background-color: transparent;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+  }
+  
+  .actions button:hover,
+  .actions button:active {
+    background-color: #ffe2ed;
+  }

@@ -1,0 +1,113 @@
+.iosfooter {
+    display: none;
+  }
+  
+  html.is_ios_hybrid .ios-footer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background-color: #f7f7f8;
+    font-size: 17px;
+    color: #929292;
+    height: 50px;
+    z-index: 100000000;
+    padding: 5px;
+    border-top: 1px solid #c4c4c4;
+  }
+  
+  /* html.is_ios_hybrid .ios-footer a.tab-link {
+    font-size: 17px;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    display: inline-block;
+    width: 33.33%;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  html.is_ios_hybrid .ios-footer a.tab-link {
+    color: #929292;
+  } */
+  .iosfooterTabLink{
+    color: #929292;
+    font-size: 17px;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    display: inline-block;
+    width: 33.33%;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  /* html.is_ios_hybrid .ios-footer a.tab-link.active,
+  html.is_ios_hybrid .ios-footer a.tab-link:active,
+  html.is_ios_hybrid .ios-footer a.tab-link:hover {
+    color: #007aff;
+  } */
+  .iosfooterTabActive a:active{
+    color: #007aff;
+  }
+  .iosfooterTabActive a:hover{
+    color: #007aff;
+  }
+  
+  html.is_ios_hybrid .ios-footer a.tab-link .icon-fill {
+    display: none;
+  }
+  
+.iconfill{
+    display: inline-block;
+  }
+  
+  html.is_ios_hybrid .ios-footer a.tab-link.active .icon:not(.icon-fill),
+  html.is_ios_hybrid .ios-footer a.tab-link:active .icon:not(.icon-fill),
+  html.is_ios_hybrid .ios-footer a.tab-link:focus .icon:not(.icon-fill),
+  html.is_ios_hybrid .ios-footer a.tab-link:hover .icon:not(.icon-fill) {
+    display: none;
+  }
+  
+  html.is_ios_hybrid .ios-footer .tabbar-label {
+    display: block;
+    line-height: 1;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+    margin-top: 2px;
+    font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+  
+  html.is_ios_hybrid .ios-footer .icon {
+    position: relative;
+  }
+  
+  html.is_ios_hybrid .ios-footer .badge {
+    line-height: 16px;
+    height: 16px;
+    border-radius: 16px;
+    padding: 0 4px;
+    min-width: 16px;
+    font-family: -apple-system, SF UI Text, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+    font-size: 10px;
+    position: absolute;
+    left: 100%;
+    margin-left: -10px;
+    top: -2px;
+    display: inline-block;
+    color: #fff;
+    background: #8e8e93;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #ff3b30;
+  }
+  

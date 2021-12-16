@@ -48,7 +48,7 @@ const Login = () => {
         } else {
           console.log(JSON.stringify(response.data));
           toast.error(
-            <Toast title="Welcome to INKS-VILLA" text="" type="Info" />,
+            <Toast title="Welcome to Project Explore" text="" type="Info" />,
             { autoClose: 3000, hideProgressBar: true }
           );
           localStorage.setItem("userData", JSON.stringify(response.data));
@@ -162,7 +162,7 @@ const Login = () => {
                     </g>
                   </g>
                 </svg>
-                <h2 className="brand-text text-primary ml-1">INKS-VILLA</h2>
+                <h2 className="brand-text text-primary ml-1">Project Explore</h2>
               </Link>
               <CardTitle tag="h4" className="mb-1">
                 <h2 className="brand-text text-primary ml-1">Admin Login</h2>
