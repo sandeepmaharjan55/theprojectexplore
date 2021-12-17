@@ -1,4 +1,4 @@
-import React, { Component, useState} from "react";
+import React, { Component, useState } from "react";
 // import Backdrop from "./modal/Backdrop";
 // import Modal from "./modal/Modal";
 import {
@@ -17,7 +17,7 @@ import {
 
 // function Todo(props) {
 //     const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+
 //     function handleDelete() {
 //       // alert(props.text);
 //       console.log("delete");
@@ -42,24 +42,27 @@ import {
 //       </div>
 //     );
 //   }
-  
+
 //   export default Todo;
 
 export class DataCard extends Component {
   render() {
     return (
-      <div>
+      <Container>
         <Row>
-          <CardDeck style={{ marginLeft: "10px", width: "80%" }}>
-            <Col>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+          <Col xs="6" lg="8">
+            {/* Row 1 */}
+            <Row>
+              {/* <Col xs={6} md={8}> */}
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
@@ -70,18 +73,18 @@ export class DataCard extends Component {
                     longer.
                   </CardText>
                   <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
@@ -92,18 +95,18 @@ export class DataCard extends Component {
                     longer.
                   </CardText>
                   <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
@@ -113,43 +116,43 @@ export class DataCard extends Component {
                     additional content.
                   </CardText>
                   <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3"> 
+                <Card>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
                   </CardSubtitle>
                   <CardText>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This card has even longer
-                    content than the first to show that equal height action.
+                    This card has supporting text below as a natural lead-in to
+                    additional content.
                   </CardText>
                   <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-          </CardDeck>
-
-          <Col>
-            <ul>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+                 </CardBody> */}
+                </Card>
+              </Col>
+            </Row>
+            {/* Row 2 */}
+            <Row>
+              {/* <Col xs={6} md={8}> */}
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
@@ -159,17 +162,19 @@ export class DataCard extends Component {
                     lead-in to additional content. This content is a little bit
                     longer.
                   </CardText>
-                  <Button color="danger">Get Insured</Button>
-                </CardBody>
-              </Card>
-              <Card>
-                <CardImg
-                  alt="Card image cap"
-                  src="https://picsum.photos/318/180"
-                  top
-                  width="100%"
-                />
-                <CardBody>
+                  <Button>Button</Button>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
                   <CardTitle tag="h5">Card title</CardTitle>
                   <CardSubtitle className="mb-2 text-muted" tag="h6">
                     Card subtitle
@@ -179,13 +184,230 @@ export class DataCard extends Component {
                     lead-in to additional content. This content is a little bit
                     longer.
                   </CardText>
-                  <Button color="danger">Get Insured</Button>
-                </CardBody>
-              </Card>
-            </ul>
+                  <Button>Button</Button>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
+                  <CardTitle tag="h5">Card title</CardTitle>
+                  <CardSubtitle className="mb-2 text-muted" tag="h6">
+                    Card subtitle
+                  </CardSubtitle>
+                  <CardText>
+                    This card has supporting text below as a natural lead-in to
+                    additional content.
+                  </CardText>
+                  <Button>Button</Button>
+                 </CardBody> */}
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  {/* <CardBody>
+                  <CardTitle tag="h5">Card title</CardTitle>
+                  <CardSubtitle className="mb-2 text-muted" tag="h6">
+                    Card subtitle
+                  </CardSubtitle>
+                  <CardText>
+                    This card has supporting text below as a natural lead-in to
+                    additional content.
+                  </CardText>
+                  <Button>Button</Button>
+                 </CardBody> */}
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+          <Col xs="6" lg="4">
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">Card title</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      Card subtitle
+                    </CardSubtitle>
+                    <CardText>
+                      This is a wider card with supporting text
+                    </CardText>
+                    <Button color="danger">Get Insured</Button>
+                  </CardBody>
+                </Card>
+                <Card>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    top
+                    width="100%"
+                  />
+                  <CardBody>
+                    <CardTitle tag="h5">Card title</CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      Card subtitle
+                    </CardSubtitle>
+                    <CardText>
+                      This is a wider card with supporting text.
+                    </CardText>
+                    <Button color="danger">Get Insured</Button>
+                  </CardBody>
+                </Card>
+            
+            
           </Col>
         </Row>
-      </div>
+      </Container>
+
+      //       <Container fluid="xs" style={{marginLeft:"10px", marginRight:"10px"}}>
+      //         <Row>
+      //             {/* <Col xs={6} md={8}> */}
+      //             <Col xs={6} md={2} lg={2}>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card image cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                  {/* <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This is a wider card with supporting text below as a natural
+      //                     lead-in to additional content. This content is a little bit
+      //                     longer.
+      //                   </CardText>
+      //                   <Button>Button</Button>
+      //                  </CardBody> */}
+      //               </Card>
+      //             </Col>
+      //             <Col xs={6} md={2} lg={2}>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card image cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                  {/* <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This is a wider card with supporting text below as a natural
+      //                     lead-in to additional content. This content is a little bit
+      //                     longer.
+      //                   </CardText>
+      //                   <Button>Button</Button>
+      //                  </CardBody> */}
+      //               </Card>
+      //             </Col>
+      //             <Col xs={6} md={2} lg={2}>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card im</CardBody>age cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                  {/* <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This card has supporting text below as a natural lead-in to
+      //                     additional content.
+      //                   </CardText>
+      //                   <Button>Button</Button>
+      //                  </CardBody> */}
+      //               </Card>
+      //             </Col>
+      //               <Col xs={6} md={2} lg={2}>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card im</CardBody>age cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                  {/* <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This card has supporting text below as a natural lead-in to
+      //                     additional content.
+      //                   </CardText>
+      //                   <Button>Button</Button>
+      //                  </CardBody> */}
+      //               </Card>
+      //             </Col>
+      //             {/* side ko part */}
+      //             <Col md={4} lg={4}>
+      //             <ul>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card image cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                 <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This is a wider card with supporting text
+      //                   </CardText>
+      //                   <Button color="danger">Get Insured</Button>
+      //                  </CardBody>
+      //               </Card>
+      //               <Card>
+      //                 <CardImg
+      //                   alt="Card image cap"
+      //                   src="https://picsum.photos/318/180"
+      //                   top
+      //                   width="100%"
+      //                 />
+      //                 <CardBody>
+      //                   <CardTitle tag="h5">Card title</CardTitle>
+      //                   <CardSubtitle className="mb-2 text-muted" tag="h6">
+      //                     Card subtitle
+      //                   </CardSubtitle>
+      //                   <CardText>
+      //                     This is a wider card with supporting text.
+      //                   </CardText>
+      //                   <Button color="danger">Get Insured</Button>
+      //                  </CardBody>
+      //               </Card>
+      //             </ul>
+      //           </Col>
+      // {/* side ko part end*/}
+      //           </Row>
+      //       </Container>
     );
   }
 }
