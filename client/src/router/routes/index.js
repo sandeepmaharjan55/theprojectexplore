@@ -1,7 +1,7 @@
 import { lazy, Redirect } from "react";
 
 // ** Document title
-const TemplateTitle = "%s - Project Nepal ";
+const TemplateTitle = "%s - Project Explore ";
 
 // ** Default Route
 const DefaultRoute = "/";
@@ -23,14 +23,14 @@ const Routes = [
   //   // component: lazy(() => import("../../views/frontend/Homepage")),
   //   layout: "BlankLayout",
   // },
-  {
-    path: "/sad",
-    component: lazy(() => import("../../views/frontend/pages/index")),
-    layout: "BlankLayout",
-    meta: {
-      publicRoute: false,
-    },
-  },
+  // {
+  //   path: "/sad",
+  //   component: lazy(() => import("../../views/frontend/index")),
+  //   layout: "BlankLayout",
+  //   meta: {
+  //     publicRoute: false,
+  //   },
+  // },
   {
     path: "/home",
     component: lazy(() => import("../../views/Home")),
@@ -59,6 +59,11 @@ const Routes = [
   {
     path: "/admin/destinationoverview",
     component: lazy(() => import("../../views/admin/destinationOverview")),
+    layout: "NefscunUserLayout",
+  },
+  {
+    path: "/admin/destinationevent",
+    component: lazy(() => import("../../views/admin/destinationEvent")),
     layout: "NefscunUserLayout",
   },
   {

@@ -331,13 +331,14 @@ const DestinationOverviewList = () => {
 
     if (value.length) {
       updatedData = data.filter(item => {
+        // console.log(item);
         const startsWith =
-          item.name.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.desC.toLowerCase().startsWith(value.toLowerCase())
+        item.destination.name.toLowerCase().startsWith(value.toLowerCase()) ||
+          item.fun.toLowerCase().startsWith(value.toLowerCase())
 
         const includes =
-          item.name.toLowerCase().includes(value.toLowerCase()) ||
-          item.desC.toLowerCase().includes(value.toLowerCase())
+          item.destination.name.toLowerCase().includes(value.toLowerCase()) ||
+          item.fun.toLowerCase().includes(value.toLowerCase())
 
 
         if (startsWith) {
@@ -394,13 +395,13 @@ const DestinationOverviewList = () => {
                 <FormGroup>
 
                   {/* <Label for='destinationInfo'>Destination Name:</Label> */}
-                  {/* <Input class="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' /> */}
+                  {/* <Input className="form-control" type='text' value={name} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' /> */}
 
-                  {/* <select class="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+                  {/* <select className="form-control" onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
                     <option value='${destination._id}'>'${destination.name}'</option>
                   </select> */}
 
-                  {/* <select class="form-control" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
+                  {/* <select className="form-control" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' >
                 
                     {dataOverview.map((item) => {
                      
@@ -424,7 +425,7 @@ const DestinationOverviewList = () => {
                     </div>
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>lackOfCrime:
-                        <Input class="form-control" type='text' value={lackOfCrime} required onChange={(e) => setDestinationOverviewLackOfCrime(e.target.value)} name="lackOfCrime" id='lackOfCrime' />
+                        <Input className="form-control" type='text' value={lackOfCrime} required onChange={(e) => setDestinationOverviewLackOfCrime(e.target.value)} name="lackOfCrime" id='lackOfCrime' />
                       </Label>
                     </div>
                   </div>
@@ -433,13 +434,13 @@ const DestinationOverviewList = () => {
                   <div className="d-flex justify-content-between">
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>Temperature:
-                        <Input class="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
+                        <Input className="form-control" type='number' value={temperature} required onChange={(e) => setDestinationOverviewTemperature(e.target.value)} name="temperature" id='temperature' />
                       </Label>
                     </div>
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>Temp Unit:
 
-                        <select class="form-control" value={tempUnit} onChange={(e) => setDestinationOverviewTempUnit(e.target.value)} name="tempUnit" id='tempUnit' >
+                        <select className="form-control" value={tempUnit} onChange={(e) => setDestinationOverviewTempUnit(e.target.value)} name="tempUnit" id='tempUnit' >
                           <option value="centigrade">°C</option>
                           <option value="fahrenheit">°F</option>
                         </select>
@@ -450,7 +451,7 @@ const DestinationOverviewList = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for='destinationInfo'>cons:
-                    {/* <Input class="form-control" type='text' value={cons} required onChange={(e) => setDestinationOverviewCons(e.target.value)} name="cons" id='cons' /> */}
+                    {/* <Input className="form-control" type='text' value={cons} required onChange={(e) => setDestinationOverviewCons(e.target.value)} name="cons" id='cons' /> */}
 
                     <div className="tags-input">
                       <ul id="tags">
@@ -474,13 +475,13 @@ const DestinationOverviewList = () => {
                           event => (event.key === "Shift" ? addTags(event) : null)}
                         placeholder="Press SHIFT to add cons"
                       />
-                      <Input class="form-control" type='text' name="cons" id='cons' hidden />
+                      <Input className="form-control" type='text' name="cons" id='cons' hidden />
                     </div>
                   </Label>
                 </FormGroup>
                 <FormGroup>
                   <Label for='destinationInfo'>Pros:
-                    {/* <Input class="form-control" type='text' value={pros} required onChange={(e) => setDestinationOvervirePros(e.target.value)} name="pros" id='pros' /> */}
+                    {/* <Input className="form-control" type='text' value={pros} required onChange={(e) => setDestinationOvervirePros(e.target.value)} name="pros" id='pros' /> */}
                     <div className="tags-input">
                       <ul id="tags">
                         {tagsPros.map((tag, index) => (
@@ -502,7 +503,7 @@ const DestinationOverviewList = () => {
                           event => (event.key === "Shift" ? addTagsPros(event) : null)}
                         placeholder="Press SHIFT to add pros"
                       />
-                      <Input class="form-control" type='text' name="pros" id='pros' hidden />
+                      <Input className="form-control" type='text' name="pros" id='pros' hidden />
                     </div>
                   </Label>
                 </FormGroup>
@@ -531,7 +532,7 @@ const DestinationOverviewList = () => {
                           event => (event.key === "Shift" ? addTagsLanguage(event) : null)}
                         placeholder="Press SHIFT to add language"
                       />
-                      <Input class="form-control" type='text' name="languages" id='languages' hidden />
+                      <Input className="form-control" type='text' name="languages" id='languages' hidden />
                     </div>
                       </Label>
                     </div>
@@ -562,7 +563,7 @@ const DestinationOverviewList = () => {
                           event => (event.key === "Shift" ? addTagsReligion(event) : null)}
                         placeholder="Press SHIFT to add religion"
                       />
-                      <Input class="form-control" type='text' name="religions" id='religions' hidden />
+                      <Input className="form-control" type='text' name="religions" id='religions' hidden />
                     </div>
                       </Label>
                     </div>
@@ -593,7 +594,7 @@ const DestinationOverviewList = () => {
                           event => (event.key === "Shift" ? addTagsDestTags(event) : null)}
                         placeholder="Press SHIFT to add tags"
                       />
-                      <Input class="form-control" type='text' name="tags" id='tagsData' hidden />
+                      <Input className="form-control" type='text' name="tags" id='tagsData' hidden />
                     </div>
                       </Label>
                     </div>
@@ -603,12 +604,12 @@ const DestinationOverviewList = () => {
                   <div className="d-flex justify-content-between">
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>landscapes:
-                        <Input class="form-control" type='text' value={landscapes} required onChange={(e) => setDestinationOverviewLandscapes(e.target.value)} name="landscapes" id='landscapes' />
+                        <Input className="form-control" type='text' value={landscapes} required onChange={(e) => setDestinationOverviewLandscapes(e.target.value)} name="landscapes" id='landscapes' />
                       </Label>
                     </div>
                     {/* <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>tags:
-                        <Input class="form-control" type='text' value={tags} required onChange={(e) => setDestinationOverviewTags(e.target.value)} name="tags" id='tags' />
+                        <Input className="form-control" type='text' value={tags} required onChange={(e) => setDestinationOverviewTags(e.target.value)} name="tags" id='tags' />
                       </Label>
                     </div> */}
                   </div>
@@ -617,12 +618,12 @@ const DestinationOverviewList = () => {
                   <div className="d-flex justify-content-between">
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>internet:
-                        <Input class="form-control" type='text' value={internet} required onChange={(e) => setDestinationOverviewInternet(e.target.value)} name="internet" id='internet' />
+                        <Input className="form-control" type='text' value={internet} required onChange={(e) => setDestinationOverviewInternet(e.target.value)} name="internet" id='internet' />
                       </Label>
                     </div>
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>Fun:
-                        <Input class="form-control" type='text' value={fun} required onChange={(e) => setDestinationOverviewFun(e.target.value)} name="fun" id='fun' />
+                        <Input className="form-control" type='text' value={fun} required onChange={(e) => setDestinationOverviewFun(e.target.value)} name="fun" id='fun' />
                       </Label>
                     </div>
                   </div>
@@ -631,12 +632,12 @@ const DestinationOverviewList = () => {
                   <div className="d-flex justify-content-between">
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>airQuality:
-                        <Input class="form-control" placeholder="In number" type='number' value={airQuality} required onChange={(e) => setDestinationOverviewAirQuality(e.target.value)} name="airQuality" id='airQuality' />
+                        <Input className="form-control" placeholder="In number" type='number' value={airQuality} required onChange={(e) => setDestinationOverviewAirQuality(e.target.value)} name="airQuality" id='airQuality' />
                       </Label>
                     </div>
                     <div style={{ "padding-right": "5px" }}>
                       <Label for='destinationInfo'>humidity:
-                        <Input class="form-control" placeholder="In number" type='number' value={humidity} required onChange={(e) => setDestinationOverviewHumidity(e.target.value)} name="humidity" id='humidity' />
+                        <Input className="form-control" placeholder="In number" type='number' value={humidity} required onChange={(e) => setDestinationOverviewHumidity(e.target.value)} name="humidity" id='humidity' />
                       </Label>
                     </div>
                   </div>

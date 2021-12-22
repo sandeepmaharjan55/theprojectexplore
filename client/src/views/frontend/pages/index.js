@@ -1,9 +1,15 @@
 import React, { Component, Fragment} from "react";
-import NavbarSection from "../components/layout/MainNavigation";
-import CarouselSection from "../components/Carousel";
-import VideoSection from "../components/VideoSection";
+import NavbarSection from "../components/Navbar/MainNavigation";
+import CarouselSection from "../components/Header/Carousel";
+import VideoSection from "../components/Header/VideoSection";
 import DataCard from "../components/DataCards";
+import FooterSection from "../components/Footer/Footer";
 // import '../components/modal/modal.css';
+
+// import "bootstrap/scss/bootstrap.scss";
+// import "../../assets/scss/paper-kit.scss";
+// import "../../assets/demo/demo.css?v=1.3.0";
+
 export class IndexPage extends Component {
   render() {
     return (
@@ -12,6 +18,7 @@ export class IndexPage extends Component {
         <VideoSection />
         {/* <CarouselSection /> */}
         <DataCard />
+        <FooterSection />
       </div>
     );
   }

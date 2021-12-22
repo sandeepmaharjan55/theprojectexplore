@@ -19,7 +19,13 @@ router.get("/list", auth, async (req, res) => {
         flag: true,
       }
       // "createdDate images videos description mediaType"
-    )
+    ).populate({
+      path: "destination",
+      match: {
+        flag: true
+      },
+      select: "_id name",
+    })
       .sort({ createdDate: -1 })
       .lean();
 
@@ -42,8 +48,8 @@ router.get("/list", auth, async (req, res) => {
 router.post("/store", auth, async (req, res) => {
   try {
     var documentBody = {};
-    if (req.body.destinationId)
-      documentBody.destination = req.body.destinationId;
+    if (req.body.destination)
+      documentBody.destination = req.body.destination;
     if (req.body.title) documentBody.title = req.body.title;
     if (req.body.subTitle) documentBody.subTitle = req.body.subTitle;
     if (req.body.desC) documentBody.desC = req.body.desC;
@@ -69,5 +75,35 @@ router.post("/store", auth, async (req, res) => {
       .json({ status: false, message: "Bad request", data: error });
   }
 });
+// @route:  GET api/destinationevent/delete
+// @desc:   delete destinationevent
+// @access: auth
 
+router.post(
+	"/delete",
+auth,
+	async (req, res) => {
+		try {
+      // console.log("m here delete");
+      // console.log(req);
+			let udpatedDocument = await DestinationEvent.findOneAndUpdate({
+				_id: ObjectId(req.body.id),
+				flag: true,
+			}, {
+				$set: {
+					flag: false
+				}
+			}, {
+				new: true
+			});
+// console.log("sad");
+			if (udpatedDocument) res.json({
+				message: "Item successfully deleted"
+			});
+			else res.status(406).json({
+				message: "Sorry! Cannot delete now."
+			});
+		} catch (error) {}
+	}
+);
 module.exports = router;
