@@ -9,15 +9,10 @@ const schema = Schema({
   title: String,
   location: String,
   imageFileUrl: [String],
-  videoFileUrl: [String],
-  mediaType: {
-    type: String,
-    enum: ["image", "video"],
-  },
   tags: [String],
   type: {
     type: String,
-    enum: ["preview", "overview", "events"],
+    enum: ["preview", "overview", "event"],
   },
   status: {
     type: Boolean,

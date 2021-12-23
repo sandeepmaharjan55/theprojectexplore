@@ -60,7 +60,7 @@ const DestinationList = () => {
   }
   // , row.subName, row.desC, row.isRecommended, row.type, row.difficulty, row.minDays, row.bestSeasons, row.accomodation, row.maxAltitude
   const handleEdit = (row) => {
-    // setId(row._id)
+    setId(row._id)
     setDestinationName(row.name)
     setDestinationSubName(row.subName)
     setDestinationDesc(row.desC)

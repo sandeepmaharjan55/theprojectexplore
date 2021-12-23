@@ -63,73 +63,83 @@ const DestinationOverviewList = () => {
   const [tagsReligion, setTagsReligion] = useState([]);
   const [tagsDestTags, setTagsDestTags] = useState([]);
 
-
   //tag cons
   const addTags = event => {
-    //console.log(event.target.value);
-    document.getElementById("cons").setAttribute('value', tagsCons);
     if (event.key === "Shift" && event.target.value !== "") {
-      // console.log(event.target.index);
-      // tagsCons.push(event.target.value);
       setTags([...tagsCons, event.target.value]);
-      // selectedTags([...tagsCons, event.target.value]);
       event.target.value = "";
-      document.getElementById("cons").setAttribute('value', tagsCons);
     }
   };
+  if (tagsCons !== null && tagsCons.length > 0) {
+    const input =  document.getElementById("cons");
+    if (input) {
+     input.setAttribute('value', tagsCons);
+    }
+  }
   const removeTags = indexToRemove => {
     setTags([...tagsCons.filter((_, index) => index !== indexToRemove)]);
-    // document.getElementById("cons").setAttribute('value', tagsCons);
   };
   //tag pros
   const addTagsPros = event => {
-    //console.log(event.target.value);
     if (event.key === "Shift" && event.target.value !== "") {
       setTagsPros([...tagsPros, event.target.value]);
       event.target.value = "";
-      document.getElementById("pros").setAttribute('value', tagsPros);
-      // console.log(event.target.value);
     }
   };
+  if (tagsPros !== null && tagsPros.length > 0) {
+    const input =  document.getElementById("pros");
+    if (input) {
+     input.setAttribute('value', tagsPros);
+    }
+  }
   const removeTagsPros = indexToRemove => {
     setTagsPros([...tagsPros.filter((_, index) => index !== indexToRemove)]);
   };
     //tag languages
     const addTagsLanguage = event => {
-      //console.log(event.target.value);
       if (event.key === "Shift" && event.target.value !== "") {
         setTagsLanguage([...tagsLanguage, event.target.value]);
         event.target.value = "";
-        document.getElementById("languages").setAttribute('value', tagsLanguage);
-        // console.log(event.target.value);
       }
     };
+    if (tagsLanguage !== null && tagsLanguage.length > 0) {
+      const input =  document.getElementById("languages");
+      if (input) {
+       input.setAttribute('value', tagsLanguage);
+      }
+    }
     const removeTagsLanguage = indexToRemove => {
       setTagsLanguage([...tagsLanguage.filter((_, index) => index !== indexToRemove)]);
     };
         //tag religions
         const addTagsReligion = event => {
-          //console.log(event.target.value);
           if (event.key === "Shift" && event.target.value !== "") {
             setTagsReligion([...tagsReligion, event.target.value]);
             event.target.value = "";
-            document.getElementById("religions").setAttribute('value', tagsReligion);
-            // console.log(event.target.value);
           }
         };
+        if (tagsReligion !== null && tagsReligion.length > 0) {
+          const input =  document.getElementById("religions");
+          if (input) {
+           input.setAttribute('value', tagsReligion);
+          }
+        }
         const removeTagsReligion = indexToRemove => {
           setTagsReligion([...tagsReligion.filter((_, index) => index !== indexToRemove)]);
         };
             //tag destination tags
     const addTagsDestTags = event => {
-      // console.log(event.target.value);
       if (event.key === "Shift" && event.target.value !== "") {
         setTagsDestTags([...tagsDestTags, event.target.value]);
         event.target.value = "";
-        document.getElementById("tagsData").setAttribute('value', tagsDestTags);
-        // console.log(event.target.value);
       }
     };
+    if (tagsDestTags !== null && tagsDestTags.length > 0) {
+      const input =  document.getElementById("tagsData");
+      if (input) {
+       input.setAttribute('value', tagsDestTags);
+      }
+    }
     const removeTagsDestTags = indexToRemove => {
       setTagsDestTags([...tagsDestTags.filter((_, index) => index !== indexToRemove)]);
     };
@@ -139,10 +149,11 @@ const DestinationOverviewList = () => {
 
   // ** Function to handle Modal toggle
   const handleModal = () => {
-    setDestinationName()
+    setDestinationName();
+    // setTags();
     // setDestinationOverviewCons(target.value = "")
     // setSlug()
-    setModal(!modal)
+    setModal(!modal);
   }
   // , row.subName, row.desC, row.isRecommended, row.type, row.difficulty, row.minDays, row.bestSeasons, row.accomodation, row.maxAltitude
   const handleEdit = (row) => {
@@ -472,7 +483,8 @@ const DestinationOverviewList = () => {
                       </ul>
                       <Input
                         type="text" onKeyUp={
-                          event => (event.key === "Shift" ? addTags(event) : null)}
+                          event => (
+                          event.key === "Shift" ? addTags(event) : null)}
                         placeholder="Press SHIFT to add cons"
                       />
                       <Input className="form-control" type='text' name="cons" id='cons' hidden />

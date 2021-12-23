@@ -7,6 +7,7 @@ const { isAdmin } = require("../../../middlewares/checkRole");
 const DestinationGallery = require("../../../models/destination/destination_gallery");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
+const { v4: uuidv4 } = require("uuid");
 
 // @route:  GET api/destinationgallery/list
 // @desc:   get list of destination gallery
@@ -19,7 +20,13 @@ router.get("/list", auth, async (req, res) => {
         flag: true,
       }
       // "createdDate images videos description mediaType"
-    )
+    ).populate({
+      path: "destination",
+      match: {
+        flag: true
+      },
+      select: "_id name",
+    })
       .sort({ createdDate: -1 })
       .lean();
 
@@ -41,93 +48,62 @@ router.get("/list", auth, async (req, res) => {
 // @access: auth
 router.post("/store", auth, async (req, res) => {
   try {
-    const isExists = await DestinationGallery.findOne({
-      destination: req.body.destinationId,
-      flag: true,
-    });
-    if (isExists)
-      return res.status(404).json({
-        status: false,
-        message: "Destination gallery already exist",
-      });
-    else {
-      var documentBody = {};
-      if (req.body.destinationId)
-        documentBody.destination = req.body.destinationId;
-      if (req.body.title) documentBody.title = req.body.title;
-      if (req.body.location) documentBody.location = req.body.location;
-      if (req.body.mediaType) documentBody.mediaType = req.body.mediaType;
-      if (req.body.tags) documentBody.tags = req.body.tags;
-      if (req.body.type) documentBody.type = req.body.type;
-      if (req.body.status) documentBody.status = req.body.status;
-      if (documentBody.mediaType === "image") {
-        documentBody.fileUrl = [];
-        const file = req.files.fileUrl;
-        const systemImageUrl = `${__dirname}/../../../public/files/destination/gallery/images/${
-          Date.now() + "-" + file.name
-        }`;
-        const imageUrlToSave = `public/files/destination/gallery/images/${
-          Date.now() + "-" + file.name
-        }`;
-        // body.fileUrl = imageUrlToSave;
-        documentBody.fileUrl.push(imageUrlToSave);
-        file.mv(systemImageUrl, function (err) {
-          if (err) {
-            res.status(500).json({
-              status: false,
-              message: "Cannot upload the file",
-              data: {},
-            });
-          } else {
-            const newsfeedModel = new NewsFeed(documentBody);
-            newsfeedModel.save().then((savedNewsfeed) => {
-              res.status(200).json({
-                status: true,
-                message: "Newsfeed added Successfully",
+    var documentBody = {};
+    if (req.body.destination) documentBody.destination = req.body.destination;
+    if (req.body.title) documentBody.title = req.body.title;
+    if (req.body.location) documentBody.location = req.body.location;
+    if (req.body.tags) documentBody.tags = req.body.tags;
+    if (req.body.type) documentBody.type = req.body.type;
+    if (req.files) {
+      documentBody.imageFileUrl = [];
+      const file = (
+        Array.isArray(req.files.imageFileUrl)
+          ? req.files.imageFileUrl
+          : [req.files.imageFileUrl]
+      ).filter((e) => e);
+      for (var i = 0; i < file.length; i++) {
+        if (
+          file[i].mimetype == "image/png" ||
+          file[i].mimetype == "image/jpg" ||
+          file[i].mimetype == "image/jpeg"
+        ) {
+          let randomUUID = uuidv4();
+          const systemImageUrl = `${__dirname}/../../../public/files/destination/gallery/`+ req.body.type + `/${
+            randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
+          }`;
+          const imageUrlToSave = `public/files/destination/gallery/`+ req.body.type + `/${
+            randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
+          }`;
+          // body.fileUrl = imageUrlToSave;
+          documentBody.imageFileUrl.push(imageUrlToSave);
+          file[i].mv(systemImageUrl, function (err) {
+            if (err) {
+              res.status(500).json({
+                status: false,
+                message: "Cannot upload the file",
                 data: {},
               });
-            });
-          }
-        });
-      } else if (documentBody.mediaType === "video") {
-        // console.log(documentBody);
-        documentBody.fileUrl = [];
-        const file = req.files.fileUrl;
-        const systemVideoUrl = `${__dirname}/../../../public/files/destination/gallery/videos/${
-          Date.now() + "-" + file.name
-        }`;
-        const videoUrlToSave = `public/files/destination/gallery/videos/${
-          Date.now() + "-" + file.name
-        }`;
-        documentBody.fileUrl.push(videoUrlToSave);
-        file.mv(systemVideoUrl, function (err) {
-          if (err) {
-            res.status(500).json({
-              status: false,
-              message: "Cannot upload the file",
-              data: {},
-            });
-          } else {
-            const destinationGalleryModel = new DestinationGallery(
-              documentBody
-            );
-            destinationGalleryModel.save().then((savedDestinationGallery) => {
-              res.status(200).json({
-                status: true,
-                message: "File added Successfully",
-                data: {},
-              });
-            });
-          }
-        });
-      } else {
-        res.status(415).json({
-          status: false,
-          message: "Invalid media type",
-          data: {},
-        });
+            }
+          });
+        } else {
+          console.log("invalid file type");
+        }
       }
     }
+    const documentModel = new DestinationGallery(documentBody);
+    let savedDocument = await documentModel.save();
+    if (savedDocument)
+      res.json({
+        status: true,
+        message: "Destination Gallery successfully created",
+        data: savedDocument,
+      });
+    else
+      res.status(406).json({
+        status: false,
+        message: "Sorry! Cannot create now.",
+        data: {},
+      });
   } catch (error) {
     res
       .status(500)

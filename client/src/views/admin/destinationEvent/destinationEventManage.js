@@ -65,8 +65,8 @@ const DestinationEventManage = () => {
   const [startDate, setDestinationEventStartDate] = useState("");
   const [endDate, setDestinationEventEndDate] = useState("");
 //   console.log(title);
-console.log(startDate);
-console.log(endDate);
+// console.log(startDate);
+// console.log(endDate);
   // const [slug, setSlug] = useState('')
   const [reload, setReload] = useState(new Date());
 

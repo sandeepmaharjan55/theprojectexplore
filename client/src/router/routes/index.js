@@ -67,6 +67,11 @@ const Routes = [
     layout: "NefscunUserLayout",
   },
   {
+    path: "/admin/destinationgallery",
+    component: lazy(() => import("../../views/admin/destinationGallery")),
+    layout: "NefscunUserLayout",
+  },
+  {
     path: "/homepage",
 
     className: "nefscun-mis",
