@@ -18,23 +18,51 @@ import {
   PopoverBody
 } from "reactstrap";
 
-function DataCard () {
-  const [posts, setPosts] = useState([]);
+// function Todo(props) {
+//     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+//     function handleDelete() {
+//       // alert(props.text);
+//       console.log("delete");
+//       setModalIsOpen(true);
+//     }
+//     function closeModalHandler() {
+//         console.log("close");
+//       setModalIsOpen(false);
+//     }
+//     return (
+//       <div className="card">
+//         <h2>asdasdassda</h2>
+//         <div className="actions">
+//           <button className="btn" onClick={handleDelete}>
+//             Delete
+//           </button>
+//         </div>
+//         {modalIsOpen && (
+//           <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler} />
+//         )}
+//         {modalIsOpen && <Backdrop onCancel={closeModalHandler} />}
+//       </div>
+//     );
+//   }
+
+//   export default Todo;
+const [posts, setPosts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  let [page, setPage] = useState(1);
   const limit = 4;
-  // const page = 1;
+  const page = 1;
+
   const getPosts = async () => {
     setIsFetching(true);
-    console.log(limit, page);
     const response = await fetch(
-      `http://localhost:7000/api/destination/listnoauth?_page=${page}&_limit=${limit}`
+      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}&_page=${page}`
     );
     const data = await response.json();
+    setPosts([...posts, ...data]);
+    setIsFetching(false);
     console.log(data);
-    setPosts({...posts, ...data});
-    setIsFetching(false)
   };
+
   function handleScroll() {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
@@ -43,12 +71,14 @@ function DataCard () {
       return;
     setIsFetching(true);
   }
+
   function getMorePosts() {
     setTimeout(() => {
       setPage(page++)
       getPosts();
     }, 2000);
   }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -65,12 +95,41 @@ function DataCard () {
     getMorePosts();
   }, [isFetching]);
 
+function DataCard() {
+  // constructor(props) {
+  //   super(props)
+
+  //   this.toggle = this.toggle.bind(this)
+  //   this.state = {
+  //     popoverOpen: false,
+  //   }
+  // }
+
+  // toggle() {
+  //   this.setState({
+  //     popoverOpen: !this.state.popoverOpen,
+  //   })
+  // }
+  // cardOnHover = () => {
+  //   console.log("hover");
+  //   this.setState({
+  //     popoverOpen: true,
+  //   })
+  // }
+  
+  // cardOnHoverLeave = () => {
+  //   console.log("hover leave");
+  //   this.setState({
+  //     popoverOpen: false,
+  //   })
+  // }
+
     return (
       <Container>
         <Row>
           <Col xs="6" lg="9">
-        
-
+            {/* Row 1 */}
+            {posts.map((post, index) => (
             <Row>
               {/* <Col xs={6} md={8}> */}
               <Col xs="12" lg="3">
@@ -176,7 +235,62 @@ function DataCard () {
                 </Card>
               </Col>
             </Row>
-
+            
+            ))}
+     {isFetching && (
+        <div className="loader">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="circle"></div>
+        </div>
+      )}
+            {/* Row 2 */}
+            {/* <Row>
+              <Col xs="12" lg="3">
+                <Card style={{height:"250px"}}>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    rounded
+                    height="100%"
+                  />
+        
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card style={{height:"250px"}}>
+                  <CardImg
+                    alt="Card image cap"
+                    src="https://picsum.photos/318/180"
+                    rounded
+                    height="100%"
+                  />
+        
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card style={{height:"250px"}}>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    rounded
+                    height="100%"
+                  />
+         
+                </Card>
+              </Col>
+              <Col xs="12" lg="3">
+                <Card style={{height:"250px"}}>
+                  <CardImg
+                    alt="Card im</CardBody>age cap"
+                    src="https://picsum.photos/318/180"
+                    rounded
+                    height="100%"
+                  />
+        
+                </Card>
+              </Col>
+            </Row> */}
           </Col>
           <Col xs="6" lg="3">
                 <Card>
@@ -221,7 +335,6 @@ function DataCard () {
         </Row>
       </Container>
     );
-  
 }
 
 export default DataCard;

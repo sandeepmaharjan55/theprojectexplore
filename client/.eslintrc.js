@@ -69,9 +69,9 @@ module.exports = {
     "arrow-spacing": "error",
     "no-confusing-arrow": "error",
     "no-duplicate-imports": "error",
-    "no-var": "error",
+    "no-var": "off",
     "object-shorthand": "error",
-    "prefer-const": "error",
+    "prefer-const": "off",
     // /  'prefer-template': 'error'
   },
 

@@ -36,6 +36,39 @@ router.get("/list", auth, async (req, res) => {
   }
 });
 
+// @route:  GET api/destination/listnoauth
+// @desc:   get list of destination with detail
+// @access: no auth TEST
+router.get("/listnoauth", async (req, res) => {
+  console.log("scrolling");
+  try {
+    const page = parseInt(req.query._page);
+    const limit = parseInt(req.query._limit);
+    // console.log(page, limit);
+				const startIndex = (page - 1) * limit;
+				const endIndex = page * limit;
+        const results = {};
+    let tillLastDestinationData = await Destination.find(
+      {
+        flag: true,
+      }
+      // "createdDate images videos description mediaType"
+    )
+      .sort({ createdDate: -1 })
+      .lean();
+      results.data = tillLastDestinationData.slice(startIndex, endIndex);
+    return res.json({
+      status: true,
+      message: "Destinations successfully fetched",
+      ...results,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: false,
+      message: "Bad request",
+    });
+  }
+});
 // @route:  POST api/destination/store
 // @desc:   store destination
 // @access: auth
