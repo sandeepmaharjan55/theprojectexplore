@@ -5,9 +5,11 @@ const auth = passport.authenticate("jwt", {
 });
 const { isAdmin } = require("../../../middlewares/checkRole");
 const DestinationGallery = require("../../../models/destination/destination_gallery");
+const Destination = require("../../../models/destination/destination");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const { v4: uuidv4 } = require("uuid");
+var fs = require('fs');
 
 // @route:  GET api/destinationgallery/list
 // @desc:   get list of destination gallery
@@ -54,6 +56,18 @@ router.post("/store", auth, async (req, res) => {
     if (req.body.location) documentBody.location = req.body.location;
     if (req.body.tags) documentBody.tags = req.body.tags;
     if (req.body.type) documentBody.type = req.body.type;
+    //FOR FILE
+    let resultDestData = await Destination.findById(
+      {_id:req.body.destination,
+        flag: true,
+      }
+      // "createdDate images videos description mediaType"
+    ).lean();
+    if (!resultDestData)
+    res.status(404).json({
+      status: false,
+      message: "Destination Not Found",
+    });
     if (req.files) {
       documentBody.imageFileUrl = [];
       const file = (
@@ -61,17 +75,26 @@ router.post("/store", auth, async (req, res) => {
           ? req.files.imageFileUrl
           : [req.files.imageFileUrl]
       ).filter((e) => e);
+      const destinationNameResult = resultDestData.name.toLowerCase();
       for (var i = 0; i < file.length; i++) {
         if (
           file[i].mimetype == "image/png" ||
           file[i].mimetype == "image/jpg" ||
           file[i].mimetype == "image/jpeg"
         ) {
+         // console.log("here");
+       //   console.log(resultDestData.name );
+          var dir = `${__dirname}/../../../public/files/destination/nepal/`+ destinationNameResult +`/`+ req.body.type;
+       //  console.log(dir);
+          if (!fs.existsSync(dir)){
+            //console.log("directory created");
+            fs.mkdirSync(dir, { recursive: true });
+          }
           let randomUUID = uuidv4();
-          const systemImageUrl = `${__dirname}/../../../public/files/destination/gallery/`+ req.body.type + `/${
+          const systemImageUrl = `${__dirname}/../../../public/files/destination/nepal/`+resultDestData.name+`/`+ req.body.type + `/${
             randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
           }`;
-          const imageUrlToSave = `public/files/destination/gallery/`+ req.body.type + `/${
+          const imageUrlToSave = `public/files/destination/nepal/`+ destinationNameResult +`/`+ req.body.type + `/${
             randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
           }`;
           // body.fileUrl = imageUrlToSave;
@@ -90,6 +113,7 @@ router.post("/store", auth, async (req, res) => {
         }
       }
     }
+    //FOR FILE ENDS
     const documentModel = new DestinationGallery(documentBody);
     let savedDocument = await documentModel.save();
     if (savedDocument)

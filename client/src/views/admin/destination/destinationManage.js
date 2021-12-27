@@ -33,7 +33,7 @@ const DestinationList = () => {
   const [editModal, setEditModal] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(0)
-  const [data, setData] = useState()
+  const [data, setData] = useState('')
   const [searchValue, setSearchValue] = useState('')
   const [filteredData, setFilteredData] = useState([])
   const [_id, setId] = useState(0);

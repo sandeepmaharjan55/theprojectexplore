@@ -9,6 +9,7 @@ const schema = Schema({
   title: String,
   subTitle: String,
   desC: String,
+  imageFileUrl: [String],
   startDate: {
     type: Date,
     default: Date.now,

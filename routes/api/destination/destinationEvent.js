@@ -5,8 +5,13 @@ const auth = passport.authenticate("jwt", {
 });
 const { isAdmin } = require("../../../middlewares/checkRole");
 const DestinationEvent = require("../../../models/destination/destination_event");
+const Destination = require("../../../models/destination/destination");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
+const { v4: uuidv4 } = require("uuid");
+var fs = require('fs');
+
+
 
 // @route:  GET api/destinationevent/list
 // @desc:   get list of destination event
@@ -47,12 +52,73 @@ router.get("/list", auth, async (req, res) => {
 // @access: auth
 router.post("/store", auth, async (req, res) => {
   try {
+   
     var documentBody = {};
     if (req.body.destination)
       documentBody.destination = req.body.destination;
     if (req.body.title) documentBody.title = req.body.title;
     if (req.body.subTitle) documentBody.subTitle = req.body.subTitle;
     if (req.body.desC) documentBody.desC = req.body.desC;
+        //FOR FILE
+        let resultDestData = await Destination.findById(
+          {_id:req.body.destination,
+            flag: true,
+          }
+          // "createdDate images videos description mediaType"
+        ).lean();
+        if (!resultDestData)
+        res.status(404).json({
+          status: false,
+          message: "Destination Not Found",
+        });
+        if (req.files) {
+         // console.log("inside files");
+          documentBody.imageFileUrl = [];
+          const file = (
+            Array.isArray(req.files.imageFileUrl)
+              ? req.files.imageFileUrl
+              : [req.files.imageFileUrl]
+          ).filter((e) => e);
+    //console.log(file);
+         const destinationNameResult = resultDestData.name.toLowerCase();
+          for (var i = 0; i < file.length; i++) {
+            if (
+              file[i].mimetype == "image/png" ||
+              file[i].mimetype == "image/jpg" ||
+              file[i].mimetype == "image/jpeg"
+            ) {
+              //console.log("here");
+             // console.log(resultDestData.name );
+              var dir = `${__dirname}/../../../public/files/destination/nepal/`+ destinationNameResult +`/events`;
+             //console.log(dir);
+              if (!fs.existsSync(dir)){
+              // console.log("directory created");
+                fs.mkdirSync(dir, { recursive: true });
+              }
+              let randomUUID = uuidv4();
+              const systemImageUrl = `${__dirname}/../../../public/files/destination/nepal/` + destinationNameResult + `/events` + `/${
+                randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
+              }`;
+              const imageUrlToSave = `public/files/destination/nepal/` + resultDestData.name + `/events` + `/${
+                randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
+              }`;
+              // body.fileUrl = imageUrlToSave;
+              documentBody.imageFileUrl.push(imageUrlToSave);
+              file[i].mv(systemImageUrl, function (err) {
+                if (err) {
+                  res.status(500).json({
+                    status: false,
+                    message: "Cannot upload the file",
+                    data: {},
+                  });
+                }
+              });
+            } else {
+              console.log("invalid file type");
+            }
+          }
+        }
+        //FOR FILE ENDS
     if (req.body.startDate) documentBody.startDate = req.body.startDate;
     if (req.body.endDate) documentBody.endDate = req.body.endDate;
     const documentModel = new DestinationEvent(documentBody);

@@ -35,7 +35,7 @@ const DestinationOverviewList = () => {
   const [editModal, setEditModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [data, setData] = useState();
+  const [data, setData] = useState('');
   const [dataOverview, setDataOverview] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [filteredData, setFilteredData] = useState([]);
@@ -401,7 +401,7 @@ const DestinationOverviewList = () => {
 
           <Modal isOpen={modal} toggle={() => setModal(!modal)} className='modal-dialog-centered' >
             <ModalHeader toggle={() => setModal(!modal)}>Add New Overview</ModalHeader>
-            <Form id="tagsform" className='auth-register-form mt-2' onSubmit={saveDestination}>
+            <Form className='auth-register-form mt-2' onSubmit={saveDestination}>
               <ModalBody>
                 <FormGroup>
 

@@ -52,34 +52,36 @@ const DestinationEventManage = () => {
   const [editModal, setEditModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [dataDestination, setDataDestination] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [_id, setId] = useState(0);
-
-  const [destination, setDestinationEventName] = useState("");
+  const [galleryImage, setGalleryImage] = useState("");
+  const [destination, setDestinationName] = useState("");
+  // console.log(destination);
   const [title, setDestinationEventTitle] = useState("");
   const [subTitle, setDestinationEventSubTitle] = useState("");
   const [desC, setDestinationEventDesc] = useState("");
   const [startDate, setDestinationEventStartDate] = useState("");
   const [endDate, setDestinationEventEndDate] = useState("");
-//   console.log(title);
-// console.log(startDate);
-// console.log(endDate);
+  //   console.log(title);
+  // console.log(startDate);
+  // console.log(endDate);
   // const [slug, setSlug] = useState('')
   const [reload, setReload] = useState(new Date());
 
   // ** Function to handle Modal toggle
   const handleModal = () => {
-    setDestinationEventName();
+    setDestinationName();
     // setSlug()
     setModal(!modal);
   };
   // , row.title, row.subTitle, row.desC, row.startDate, row.endDate, row.status, row.bestSeasons, row.accomodation, row.maxAltitude
   const handleEdit = (row) => {
-    // setId(row._id)
-    setDestinationEventName(row.destination);
+    setId(row._id)
+    // console.log(row.destination);
+    setDestinationName(row.destination);
     setDestinationEventTitle(row.title);
     setDestinationEventSubTitle(row.subTitle);
     setDestinationEventDesc(row.desC);
@@ -92,6 +94,7 @@ const DestinationEventManage = () => {
   const saveDestinationEvent = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+    formData.append("imageFileUrl", galleryImage);
     // console.log(formData);
     axios
       .post(`${config.baseUrl}/destinationevent/store`, formData, {
@@ -253,13 +256,13 @@ const DestinationEventManage = () => {
     },
     {
       name: "startDate",
-      selector: row => row.startDate.substring(0, 10),
+      selector: (row) => row.startDate.substring(0, 10),
       sortable: true,
       minWidth: "100px",
     },
     {
       name: "endDate",
-      selector: row => row.endDate.substring(0, 10),
+      selector: (row) => row.endDate.substring(0, 10),
       sortable: true,
       minWidth: "100px",
     },
@@ -286,6 +289,7 @@ const DestinationEventManage = () => {
 
   // ** Function to handle filter
   const handleFilter = (e) => {
+    //console.log("from searchbox");
     const value = e.target.value;
     let updatedData = [];
     setSearchValue(value);
@@ -331,6 +335,7 @@ const DestinationEventManage = () => {
         },
       })
       .then((response) => {
+        // console.log(response);
         setDataDestination(response.data.data);
       });
   }, [reload]);
@@ -357,47 +362,39 @@ const DestinationEventManage = () => {
                 {/* <FormGroup>
              <Input  value={_id}  name="_id" id='_id' hidden/>
               <Label for='destinationInfo'>Destination Name:</Label>
-              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationEventName(e.target.value)} name="name" id='name' />
+              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
             </FormGroup> */}
                 <FormGroup>
-                      <Label for="destinationInfo">
-                        Destination Name:  </Label>
-                        <Input
-                          list="itemData"
-                          value={destination}
-                          onChange={(e) =>
-                            setDestinationEventName(e.target.value)
-                          }
-                          name="destination"
-                          id="destination"
-                        />
-                        <datalist id="itemData">
-                          {dataDestination.map((item) => {
-                            // console.log(item.destination.name);
-                            return (
-                              <option value={item._id}>{item.name}</option>
-                            );
-                          })}
-                        </datalist>
-                    
-                      </FormGroup>
-                      <FormGroup>
-                      <Label for="destinationEventTitle">Title:</Label>
-                      <Input
-                        type="text"
-                        value={title}
-                        required
-                        onChange={(e) =>
-                          setDestinationEventTitle(e.target.value)
-                        }
-                        name="title"
-                        id="title"
-                      />
+                  <Label for="bannerName">Destination Name: </Label>
+                  <Input
+                    list="itemData"
+                    placeholder="type here..."
+                    value={destination}
+                    // onChange={(e) => setDestinationName(e.target.value)}
+                    name="destination"
+                    id="destination"
+                  />
+                  <datalist id="itemData">
+                    {dataDestination.map((item) => {
+                      // console.log(item.name);
+                      return <option value={item._id}>{item.name}</option>;
+                    })}
+                  </datalist>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="destinationEventTitle">Title:</Label>
+                  <Input
+                    type="text"
+                    value={title}
+                    required
+                    onChange={(e) => setDestinationEventTitle(e.target.value)}
+                    name="title"
+                    id="title"
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label for="destinationEventSubTitle">SubTitle:</Label>
                   <Input
-                  
                     type="text"
                     value={subTitle}
                     required
@@ -414,11 +411,19 @@ const DestinationEventManage = () => {
                     type="text"
                     value={desC}
                     required
-                    onChange={(e) =>
-                      setDestinationEventDesc(e.target.value)
-                    }
+                    onChange={(e) => setDestinationEventDesc(e.target.value)}
                     name="desC"
                     id="desC"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="imageFileUrl">Image</Label>
+                  <CustomInput
+                    name="imageFileUrl"
+                    style={{ zIndex: "5000" }}
+                    type="file"
+                    multiple
+                    onChange={(e) => setGalleryImage(e.target.files)}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -431,9 +436,7 @@ const DestinationEventManage = () => {
                     id="startDate"
                     className="c-date-picker form-control"
                     options={{ dateFormat: "Y-m-d" }}
-                    onChange={(e) =>
-                      setDestinationEventStartDate(e[0])
-                    }
+                    onChange={(e) => setDestinationEventStartDate(e[0])}
                   />
                   <Label for="destinationEventEndDate">
                     Destination endDate:
@@ -444,9 +447,7 @@ const DestinationEventManage = () => {
                     id="endDate"
                     className="c-date-picker form-control"
                     options={{ dateFormat: "Y-m-d" }}
-                    onChange={(e) =>
-                      setDestinationEventEndDate(e[0])
-                    }
+                    onChange={(e) => setDestinationEventEndDate(e[0])}
                   />
                 </FormGroup>
               </ModalBody>
@@ -475,7 +476,7 @@ const DestinationEventManage = () => {
                 {/* <FormGroup>
              <Input  value={_id}  name="_id" id='_id' hidden/>
               <Label for='destinationInfo'>DestinationName:</Label>
-              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationEventName(e.target.value)} name="name" id='name' />
+              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
             </FormGroup> */}
                 {/* <FormGroup>
               <Label for='slug'>Slug:</Label>

@@ -48,18 +48,19 @@ const DestinationGalleryList = () => {
   const [modal, setModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [destinationData, setDestinationList] = useState([]);
   const [_id, setId] = useState(0);
 
-  const [destination, setDestinationName] = useState('');
+  const [destination, setDestinationName] = useState("");
+  // console.log(destination);
   // const [bannerName, setBannerName] = useState("");
   // const [redirectUrl, setRedirectUrl] = useState("");
-  const [galleryImage, setGalleryImage] = useState();
-  const [type, setDestinationGalleryType] = useState();
-  
+  const [galleryImage, setGalleryImage] = useState("");
+  const [type, setDestinationGalleryType] = useState("");
+
   const [reload, setReload] = useState(new Date());
 
   // ** Function to handle Modal toggle
@@ -237,16 +238,16 @@ const DestinationGalleryList = () => {
     },
     {
       name: "Destination Image",
-      cell: (row) => {    
-        // console.log(row.imageFileUrl); 
-        // console.log(`${process.env.NODE_APP_ROOT_PATH}` + row.imageFileUrl[0]);   
+      cell: (row) => {
+        // console.log(row.imageFileUrl);
+        // console.log(`${process.env.NODE_APP_ROOT_PATH}` + row.imageFileUrl[0]);
         return (
           <div className="d-flex">
             <ReactFancyBox
               image={`http://localhost:7000/` + row.imageFileUrl[0]}
               defaultThumbnailWidth={50}
               defaultThumbnailHeight={50}
-            /> 
+            />
           </div>
         );
       },
@@ -369,18 +370,16 @@ const DestinationGalleryList = () => {
         setData(response.data.data);
         //console.log(response.data)
       });
-      axios
+    axios
       .get(`${config.baseUrl}/destination/list`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: userData.token
-        }
-
+          Authorization: userData.token,
+        },
       })
-      .then(response => {
+      .then((response) => {
         // console.log(response.data.data);
-        setDestinationList(response.data.data)
-
+        setDestinationList(response.data.data);
       });
   }, [reload]);
 
@@ -398,37 +397,52 @@ const DestinationGalleryList = () => {
             <ModalHeader toggle={() => setModal(!modal)}>
               Add New Destination Images
             </ModalHeader>
-            <Form className="auth-register-form mt-2" onSubmit={saveDestGallery}>
+            <Form
+              className="auth-register-form mt-2"
+              onSubmit={saveDestGallery}
+            >
               <ModalBody>
                 <FormGroup>
                   {/* <Input  value={_id}  name="_id" id='_id' hidden/> */}
                   <Label for="bannerName">Destination Name:</Label>
-                        <Input list="itemData" value={destination} onChange={(e) => setDestinationName(e.target.value)} name="destination" id='destination' />
-                      <datalist id="itemData">
-                        {destinationData.map((item) => {
-                          // console.log(item.destination.name);
-                          return (
-                            <option value={item._id}>{item.name}</option>
-                          )
-                        })}
-                      </datalist>
-                      </FormGroup>
+                  <Input
+                    list="itemData" placeholder="type here..."
+                    value={destination}
+                    onChange={(e) => setDestinationName(e.target.value)}
+                    name="destination"
+                    id="destination"
+                  />
+                  <datalist id="itemData">
+                    {destinationData.map((item) => {
+                      // console.log(item.destination.name);
+                      return <option value={item._id}>{item.name}</option>;
+                    })}
+                  </datalist>
+                </FormGroup>
                 <FormGroup>
                   <Label for="imageFileUrl">Image</Label>
-                  <CustomInput name="imageFileUrl"
+                  <CustomInput
+                    name="imageFileUrl"
                     style={{ zIndex: "5000" }}
-                    type="file" multiple
+                    type="file"
+                    multiple
                     onChange={(e) => setGalleryImage(e.target.files)}
                   />
                 </FormGroup>
                 <FormGroup>
-                <Label for='destinationGalleryType'>GalleryType:</Label>
-          <select class="form-control" value={type} onChange={(e) => setDestinationGalleryType(e.target.value)} name="type" id='type' >
-         <option value="preview">preview</option>
-         <option value="overview">overview</option>
-         <option value="event">event</option>
-        </select>
-        </FormGroup>
+                  <Label for="destinationGalleryType">GalleryType:</Label>
+                  <select
+                    className="form-control"
+                    value={type}
+                    onChange={(e) => setDestinationGalleryType(e.target.value)}
+                    name="type"
+                    id="type"
+                  >
+                    <option value="preview">preview</option>
+                    <option value="overview">overview</option>
+                    {/* <option value="event">event</option> */}
+                  </select>
+                </FormGroup>
               </ModalBody>
               <ModalFooter>
                 <Button color="primary" type="submit">
@@ -440,7 +454,9 @@ const DestinationGalleryList = () => {
           <div className="d-flex mt-md-0 mt-1">
             <Button className="ml-2" color="primary" onClick={handleModal}>
               <Plus size={15} />
-              <span className="align-middle ml-50">Add New Destination Images</span>
+              <span className="align-middle ml-50">
+                Add New Destination Images
+              </span>
             </Button>
           </div>
         </CardHeader>

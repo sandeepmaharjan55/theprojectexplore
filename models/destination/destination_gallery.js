@@ -12,7 +12,7 @@ const schema = Schema({
   tags: [String],
   type: {
     type: String,
-    enum: ["preview", "overview", "event"],
+    enum: ["preview", "overview"],
   },
   status: {
     type: Boolean,
