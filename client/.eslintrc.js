@@ -21,7 +21,7 @@ module.exports = {
     // Best Practices
     eqeqeq: "error",
     //'no-invalid-this': 'error',
-    "no-return-assign": "error",
+    "no-return-assign": "off",
     // "no-unused-expressions": ["error", { allowTernary: true }],
     // /'no-useless-concat': 'error',
     "no-useless-return": "error",

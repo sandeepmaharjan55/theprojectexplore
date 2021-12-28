@@ -42,8 +42,8 @@ router.get("/list", auth, async (req, res) => {
 router.get("/listnoauth", async (req, res) => {
   console.log("scrolling");
   try {
-    const page = parseInt(req.query._page);
-    const limit = parseInt(req.query._limit);
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
     // console.log(page, limit);
 				const startIndex = (page - 1) * limit;
 				const endIndex = page * limit;

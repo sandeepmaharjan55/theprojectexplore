@@ -46,6 +46,7 @@ const DestinationGalleryList = () => {
   const userData = JSON.parse(localStorage.getItem("userData"));
   // ** States
   const [modal, setModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [data, setData] = useState("");
@@ -69,23 +70,72 @@ const DestinationGalleryList = () => {
     // setRedirectUrl();
     setModal(!modal);
   };
-
-  const deleteDestGallery = (parameter) => {
-    const formData = new FormData();
-    formData.append("id", parameter);
+  const editDestinationGallery = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
     axios
-      .post(`${config.baseUrl}/destinationgallery/remove`, formData, {
+      .post(`${config.baseUrl}/destinationgallery/edit`, formData, {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           Authorization: userData.token,
         },
       })
       .then(function (response) {
+        setEditModal(!editModal);
+        setReload(new Date());
+        toast.success(
+          <Toast
+            title="Destination Edited Successfully!!"
+            text=""
+            type="Success"
+          />,
+          { autoClose: 3000, hideProgressBar: true }
+        );
+      })
+      .catch(function (error) {
+        if (error.response && error.response.status === 404)
+          toast.error(
+            <Toast
+              title={error.response.data.message}
+              text={error.response.data.message}
+              type="Error"
+            />,
+            { autoClose: 3000, hideProgressBar: true }
+          );
+        else
+          toast.error(
+            <Toast title="Some Error Occurred" text="" type="Error" />,
+            { autoClose: 3000, hideProgressBar: true }
+          );
+      });
+  };
+  const handleEdit = (row) => {
+    setId(row._id)
+    // console.log(row.destination);
+    setDestinationName(row.destination);
+    setGalleryImage(row.imageFileUrl);
+    setDestinationGalleryType(row.type);
+    // setSlug(row.slug)
+    setEditModal(!editModal);
+  };
+  const deleteDestinationGallery = (parameter) => {
+    const formData = new FormData();
+    formData.append("id", parameter);
+    // console.log(parameter);
+    axios
+      .post(`${config.baseUrl}/destinationgallery/delete`, formData, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorization: userData.token,
+        },
+      })
+      .then(function (response) {
+        // console.log(response);
         //setModal(!modal)
         setReload(new Date());
         toast.success(
           <Toast
-            title="Banner Deleted Successfully!!"
+            title="Destination Deleted Successfully!!"
             text=""
             type="Success"
           />,
@@ -109,55 +159,13 @@ const DestinationGalleryList = () => {
           );
       });
   };
-
-  const enableDestGallery = (parameter) => {
-    const formData = new FormData();
-    formData.append("id", parameter);
-    formData.append("activeStatus", "true");
-    axios
-      .post(`${config.baseUrl}/destinationgallery/status`, formData, {
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          Authorization: userData.token,
-        },
-      })
-      .then(function (response) {
-        //setModal(!modal)
-        setReload(new Date());
-        toast.success(
-          <Toast
-            title="Product Enabled Successfully!!"
-            text=""
-            type="Success"
-          />,
-          { autoClose: 3000, hideProgressBar: true }
-        );
-      })
-      .catch(function (error) {
-        if (error.response && error.response.status === 400)
-          toast.error(
-            <Toast
-              title={error.response.data.message}
-              text={error.response.data.errors.Error}
-              type="Error"
-            />,
-            { autoClose: 3000, hideProgressBar: true }
-          );
-        else
-          toast.error(
-            <Toast title="Some Error Occurred" text="" type="Error" />,
-            { autoClose: 3000, hideProgressBar: true }
-          );
-      });
-  };
-
-  const handleConfirmTextEnable = (id) => {
+  const handleConfirmTextDelete = (id) => {
     return MySwal.fire({
-      title: "Are you sure you want to Enable the Banner?",
+      title: "Are you sure you want to delete the Destination gallery?",
       text: "",
       icon: "info",
       showCancelButton: true,
-      confirmButtonText: "Yes, Enable",
+      confirmButtonText: "Yes, Delete",
       customClass: {
         confirmButton: "btn btn-primary",
         cancelButton: "btn btn-outline-danger ml-1",
@@ -165,67 +173,8 @@ const DestinationGalleryList = () => {
       buttonsStyling: false,
     }).then(function (result) {
       if (result.value) {
-        enableDestGallery(id);
-      }
-    });
-  };
-
-  const disableDestGallery = (parameter) => {
-    const formData = new FormData();
-    formData.append("id", parameter);
-    formData.append("activeStatus", "false");
-    axios
-      .post(`${config.baseUrl}/destinationgallery/status`, formData, {
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          Authorization: userData.token,
-        },
-      })
-      .then(function (response) {
-        //setModal(!modal)
-        setReload(new Date());
-        toast.success(
-          <Toast
-            title="Product Disabled Successfully!!"
-            text=""
-            type="Success"
-          />,
-          { autoClose: 3000, hideProgressBar: true }
-        );
-      })
-      .catch(function (error) {
-        if (error.response && error.response.status === 400)
-          toast.error(
-            <Toast
-              title={error.response.data.message}
-              text={error.response.data.errors.Error}
-              type="Error"
-            />,
-            { autoClose: 3000, hideProgressBar: true }
-          );
-        else
-          toast.error(
-            <Toast title="Some Error Occurred" text="" type="Error" />,
-            { autoClose: 3000, hideProgressBar: true }
-          );
-      });
-  };
-
-  const handleConfirmTextDisable = (id) => {
-    return MySwal.fire({
-      title: "Are you sure you want to Disable the Banner?",
-      text: "",
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Disable",
-      customClass: {
-        confirmButton: "btn btn-primary",
-        cancelButton: "btn btn-outline-danger ml-1",
-      },
-      buttonsStyling: false,
-    }).then(function (result) {
-      if (result.value) {
-        disableDestGallery(id);
+        // console.log(result.value);
+        deleteDestinationGallery(id);
       }
     });
   };
@@ -262,25 +211,19 @@ const DestinationGalleryList = () => {
       selector: (w) => w.createdDate.substring(0, 10),
       sortable: true,
     },
-    {
+   {
       name: "Actions",
       allowOverflow: true,
       cell: (row) => {
         return (
           <div className="d-flex">
-            <Link onClick={(e) => handleConfirmTextEnable(row._id)}>
-              <Check color="green" id="enable" className="ml-1" size={23} />
+            <Link onClick={(e) => handleEdit(row)}>
+              <Edit color="green" id="enable" className="ml-1" size={23} />
               <UncontrolledTooltip placement="top" target="enable">
-                Enable
+                Edit
               </UncontrolledTooltip>
             </Link>
-            <Link onClick={(e) => handleConfirmTextDisable(row._id)}>
-              <X color="red" id="disable" className="ml-1" size={23} />
-              <UncontrolledTooltip placement="top" target="disable">
-                Disable
-              </UncontrolledTooltip>
-            </Link>
-            <Link onClick={(e) => deleteDestGallery(row._id)}>
+            <Link onClick={(e) => handleConfirmTextDelete(row._id)}>
               <Trash className="ml-1" color="red" size={23} />
             </Link>
           </div>
@@ -297,11 +240,11 @@ const DestinationGalleryList = () => {
 
     if (value.length) {
       updatedData = data.filter((item) => {
-        const startsWith = item.title
+        const startsWith = item.destination.name
           .toLowerCase()
           .startsWith(value.toLowerCase());
 
-        const includes = item.title.toLowerCase().includes(value.toLowerCase());
+        const includes = item.type.toLowerCase().includes(value.toLowerCase());
 
         if (startsWith) {
           return startsWith;
@@ -447,6 +390,37 @@ const DestinationGalleryList = () => {
               <ModalFooter>
                 <Button color="primary" type="submit">
                   Save
+                </Button>{" "}
+              </ModalFooter>
+            </Form>
+          </Modal>
+            {/* to edit another modal is added */}
+            <Modal
+            isOpen={editModal}
+            toggle={() => setEditModal(!editModal)}
+            className="modal-dialog-centered"
+          >
+            <ModalHeader toggle={() => setEditModal(!editModal)}>
+              Edit Banner
+            </ModalHeader>
+            <Form
+              className="auth-register-form mt-2"
+              onSubmit={editDestinationGallery}
+            >
+              <ModalBody>
+                {/* <FormGroup>
+             <Input  value={_id}  name="_id" id='_id' hidden/>
+              <Label for='destinationInfo'>DestinationName:</Label>
+              <Input type='text' value={DestinationName} required onChange={(e) => setDestinationName(e.target.value)} name="name" id='name' />
+            </FormGroup> */}
+                {/* <FormGroup>
+              <Label for='slug'>Slug:</Label>
+              <Input type='text' value={slug} required onChange={(e) => setSlug(e.target.value)} name="slug" id='slug'/>
+            </FormGroup> */}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" type="submit">
+                  Edit
                 </Button>{" "}
               </ModalFooter>
             </Form>
