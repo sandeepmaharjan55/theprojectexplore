@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function useDestinationSearch(query, pageNumber) {
+export default function useDestinationSearch(limitNumber, pageNumber) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [destinations, setDestinations] = useState([])
@@ -9,7 +9,7 @@ export default function useDestinationSearch(query, pageNumber) {
 
   useEffect(() => {
     setDestinations([])
-  }, [query])
+  }, [limitNumber])
 
   useEffect(() => {
     setLoading(true)
@@ -18,7 +18,7 @@ export default function useDestinationSearch(query, pageNumber) {
     axios({
       method: 'GET',
       url: 'http://localhost:7000/api/destination/listnoauth',
-      params: { limit: query, page: pageNumber },
+      params: { limit: limitNumber, page: pageNumber },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
         console.log(res.data);
@@ -32,7 +32,7 @@ export default function useDestinationSearch(query, pageNumber) {
       setError(true)
     })
     return () => cancel()
-  }, [query, pageNumber])
+  }, [limitNumber, pageNumber])
 
   return { loading, error, destinations, hasMore }
 }
