@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import useDestinationSearch from "./GetDataCard";
-import classes from "./DataCard.module.css";
+import classes from "./dataCard.module.css";
+import imageTextClasses from "./dataCardImageText.module.css";
 import {
   Card,
   CardImg,
@@ -14,6 +15,7 @@ import {
   Col,
   Progress,
 } from "reactstrap";
+import 'font-awesome/css/font-awesome.min.css';
 
 export default function App() {
   const [limitNumber, setLimit] = useState(8);
@@ -99,6 +101,27 @@ export default function App() {
                           style={{ height: "250px" }}
                           className={classes.image}
                         >
+                          {/* text on images */}
+                          <div className={imageTextClasses.textContainer}>
+                          <div className={imageTextClasses.bottomLeft} style={{display: "flex" }}>
+                            <i class="fa fa-sun-o" aria-hidden="true"></i>
+                            <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>27</div>°C
+                            </div>
+                            <div className={imageTextClasses.topLeft} style={{display: "flex" }}>
+                            AQI <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>140</div>
+                            </div>
+                            <div className={imageTextClasses.topRight} style={{display: "flex" }}>
+                            <i className="fa fa-wifi" aria-hidden="true"></i>
+                            <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>2</div>Mbps
+                            </div>
+                            <div className={imageTextClasses.bottomRight} style={{display: "flex" }}>
+                            Rs. <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>5000/m</div>
+                            </div>
+                            <div className={imageTextClasses.centered}>
+                              {destination}
+                            </div>
+                          </div>
+                          {/* end text on images */}
                           <CardImg
                             style={{ opacity: "1" }}
                             alt="Card image cap"
@@ -110,19 +133,52 @@ export default function App() {
                           <div className={classes.middleTest}>
                             <div className={classes.textTest}>
                               {destination}
-                              <br/><br/>
-                              <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">Difficulty:</Col><Col lg="6"><Progress animated color="success" value="25" /> </Col>
-                            </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">MinDays:</Col><Col lg="6"><Progress animated color="info" value="55" /> </Col>
-                            </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">Accom:</Col><Col lg="6"><Progress animated color="warning" value="75" /> </Col>
-                            </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">MaxAlt:</Col><Col lg="6"><Progress animated color="danger" value="100" /> </Col>
-                            </div>
+                              <br />
+                              <br />
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">Difficulty:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="success"
+                                    value="25"
+                                  />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">MinDays:</Col>
+                                <Col lg="6">
+                                  <Progress animated color="info" value="55" />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">Accom:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="warning"
+                                    value="75"
+                                  />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">MaxAlt:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="danger"
+                                    value="100"
+                                  />
+                                </Col>
+                              </div>
                             </div>
                           </div>
                         </Card>
@@ -191,6 +247,27 @@ export default function App() {
                           style={{ height: "250px" }}
                           className={classes.image}
                         >
+                          {/* text on images */}
+                          <div className={imageTextClasses.textContainer}>
+                            <div className={imageTextClasses.bottomLeft} style={{display: "flex" }}>
+                            <i class="fa fa-sun-o" aria-hidden="true"></i>
+                            <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>27</div>°C
+                            </div>
+                            <div className={imageTextClasses.topLeft} style={{display: "flex" }}>
+                            AQI <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>140</div>
+                            </div>
+                            <div className={imageTextClasses.topRight} style={{display: "flex" }}>
+                            <i className="fa fa-wifi" aria-hidden="true"></i>
+                            <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>2</div>Mbps
+                            </div>
+                            <div className={imageTextClasses.bottomRight} style={{display: "flex" }}>
+                            Rs. <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>5000/m</div>
+                            </div>
+                            <div className={imageTextClasses.centered}>
+                              {destination}
+                            </div>
+                          </div>
+                          {/* end text on images */}
                           <CardImg
                             style={{ opacity: "1" }}
                             alt="Card image cap"
@@ -202,20 +279,53 @@ export default function App() {
                           <div className={classes.middleTest}>
                             <div className={classes.textTest}>
                               {destination}
-                            <br/><br/>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">Difficulty:</Col><Col lg="6"><Progress animated color="success" value="25" /> </Col>
+                              <br />
+                              <br />
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">Difficulty:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="success"
+                                    value="25"
+                                  />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">MinDays:</Col>
+                                <Col lg="6">
+                                  <Progress animated color="info" value="55" />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">Accom:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="warning"
+                                    value="75"
+                                  />
+                                </Col>
+                              </div>
+                              <div
+                                style={{ listStyle: "none", display: "flex" }}
+                              >
+                                <Col lg="6">MaxAlt:</Col>
+                                <Col lg="6">
+                                  <Progress
+                                    animated
+                                    color="danger"
+                                    value="100"
+                                  />
+                                </Col>
+                              </div>
                             </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">MinDays:</Col><Col lg="6"><Progress animated color="info" value="55" /> </Col>
-                            </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">Accom:</Col><Col lg="6"><Progress animated color="warning" value="75" /> </Col>
-                            </div>
-                            <div style={{listStyle: "none", display: "flex"}}>
-                            <Col lg="6">MaxAlt:</Col><Col lg="6"><Progress animated color="danger" value="100" /> </Col>
-                            </div>
-                          </div>
                           </div>
                         </Card>
                       </div>
