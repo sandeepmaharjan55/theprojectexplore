@@ -1,0 +1,43 @@
+.containerTest {
+    position: relative;
+  }
+  
+  .imageTest {
+    opacity: 1;
+    display: block;
+
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  
+  .middleTest {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .containerTest:hover .image {
+    opacity: 0.7;
+  }
+  
+  .containerTest:hover .middleTest {
+    opacity: 0.8;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+  
+  .textTest {
+    /* background-color: #04AA6D; */
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 16px 0px;
+  }

@@ -38,9 +38,9 @@ router.get("/list", auth, async (req, res) => {
 
 // @route:  GET api/destination/listnoauth
 // @desc:   get list of destination with detail
-// @access: no auth TEST
+// @access: public
 router.get("/listnoauth", async (req, res) => {
-  console.log("scrolling");
+  // console.log("scrolling");
   try {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
@@ -51,8 +51,8 @@ router.get("/listnoauth", async (req, res) => {
     let tillLastDestinationData = await Destination.find(
       {
         flag: true,
-      }
-      // "createdDate images videos description mediaType"
+      },
+       "name subName desC type difficulty minDays bestSeasons accomodation maxAltitude"
     )
       .sort({ createdDate: -1 })
       .lean();

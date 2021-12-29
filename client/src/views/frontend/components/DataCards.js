@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import useDestinationSearch from "./GetDataCard";
+import classes from "./DataCard.module.css";
 import {
   Card,
   CardImg,
@@ -11,11 +12,11 @@ import {
   Container,
   Row,
   Col,
-  CardDeck,
+  Progress,
 } from "reactstrap";
 
 export default function App() {
-  const [limitNumber, setLimit] = useState(4);
+  const [limitNumber, setLimit] = useState(8);
   const [pageNumber, setPageNumber] = useState(1);
 
   const { destinations, hasMore, loading, error } = useDestinationSearch(
@@ -89,17 +90,42 @@ export default function App() {
                     //         key={destination} style={{display:"flex", flexWrap:"wrap", flexDirection: "row"}}
                     //       >
                     <Col xs="12" lg="3">
-                      <div ref={lastDestinationElementRef} key={destination}>
-                        <Card style={{ height: "250px" }}>
+                      <div
+                        ref={lastDestinationElementRef}
+                        key={destination}
+                        className={classes.containerTest}
+                      >
+                        <Card
+                          style={{ height: "250px" }}
+                          className={classes.image}
+                        >
                           <CardImg
                             style={{ opacity: "1" }}
                             alt="Card image cap"
                             src="https://picsum.photos/318/180"
-                            rounded
+                            rounded="true"
                             height="100%"
+                            className={classes.imageTest}
                           />
+                          <div className={classes.middleTest}>
+                            <div className={classes.textTest}>
+                              {destination}
+                              <br/><br/>
+                              <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">Difficulty:</Col><Col lg="6"><Progress animated color="success" value="25" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">MinDays:</Col><Col lg="6"><Progress animated color="info" value="55" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">Accom:</Col><Col lg="6"><Progress animated color="warning" value="75" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">MaxAlt:</Col><Col lg="6"><Progress animated color="danger" value="100" /> </Col>
+                            </div>
+                            </div>
+                          </div>
                         </Card>
-                        {destination}
                       </div>
                     </Col>
                     // </div>
@@ -138,7 +164,7 @@ export default function App() {
                     //         <CardImg style={{opacity:"1"}}
                     //           alt="Card image cap"
                     //           src="https://picsum.photos/318/180"
-                    //           rounded
+                    //           rounded="true"
                     //           height="100%"
                     //         />
                     //       </Card>
@@ -160,17 +186,38 @@ export default function App() {
                     //     textAlign: "center"
                     //     }} key={destination}>{destination}</li>
                     <Col xs="12" lg="3">
-                      <div key={destination}>
-                        <Card style={{ height: "250px" }}>
+                      <div key={destination} className={classes.containerTest}>
+                        <Card
+                          style={{ height: "250px" }}
+                          className={classes.image}
+                        >
                           <CardImg
                             style={{ opacity: "1" }}
                             alt="Card image cap"
                             src="https://picsum.photos/318/180"
-                            rounded
+                            rounded="true"
                             height="100%"
+                            className={classes.imageTest}
                           />
+                          <div className={classes.middleTest}>
+                            <div className={classes.textTest}>
+                              {destination}
+                            <br/><br/>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">Difficulty:</Col><Col lg="6"><Progress animated color="success" value="25" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">MinDays:</Col><Col lg="6"><Progress animated color="info" value="55" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">Accom:</Col><Col lg="6"><Progress animated color="warning" value="75" /> </Col>
+                            </div>
+                            <div style={{listStyle: "none", display: "flex"}}>
+                            <Col lg="6">MaxAlt:</Col><Col lg="6"><Progress animated color="danger" value="100" /> </Col>
+                            </div>
+                          </div>
+                          </div>
                         </Card>
-                        {destination}
                       </div>
                     </Col>
                   );
