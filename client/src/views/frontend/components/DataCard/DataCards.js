@@ -91,7 +91,7 @@ export default function App() {
                     //         ref={lastDestinationElementRef}
                     //         key={destination} style={{display:"flex", flexWrap:"wrap", flexDirection: "row"}}
                     //       >
-                    <Col xs="12" lg="3">
+                    <Col xs="12" lg="3" key={index}>
                       <div
                         ref={lastDestinationElementRef}
                         key={destination}
@@ -104,7 +104,7 @@ export default function App() {
                           {/* text on images */}
                           <div className={imageTextClasses.textContainer}>
                           <div className={imageTextClasses.bottomLeft} style={{display: "flex" }}>
-                            <i class="fa fa-sun-o" aria-hidden="true"></i>
+                            <i className="fa fa-sun-o" aria-hidden="true"></i>
                             <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>27</div>°C
                             </div>
                             <div className={imageTextClasses.topLeft} style={{display: "flex" }}>
@@ -241,7 +241,7 @@ export default function App() {
                     //     fontSize: "2em",
                     //     textAlign: "center"
                     //     }} key={destination}>{destination}</li>
-                    <Col xs="12" lg="3">
+                    <Col xs="12" lg="3" key={index}>
                       <div key={destination} className={classes.containerTest}>
                         <Card
                           style={{ height: "250px" }}
@@ -250,7 +250,7 @@ export default function App() {
                           {/* text on images */}
                           <div className={imageTextClasses.textContainer}>
                             <div className={imageTextClasses.bottomLeft} style={{display: "flex" }}>
-                            <i class="fa fa-sun-o" aria-hidden="true"></i>
+                            <i className="fa fa-sun-o" aria-hidden="true"></i>
                             <div style={{marginLeft:"5px", fontWeight:"bold", fontSize:"medium"}}>27</div>°C
                             </div>
                             <div className={imageTextClasses.topLeft} style={{display: "flex" }}>

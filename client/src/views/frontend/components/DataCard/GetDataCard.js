@@ -11,6 +11,12 @@ export default function useDestinationSearch(limitNumber, pageNumber) {
     setDestinations([])
   }, [limitNumber])
 
+  // let loginData = {
+  //   id: 'foo',
+  //   role: 'bar',
+  //   email:'a@a.com',
+  // };
+
   useEffect(() => {
     setLoading(true)
     setError(false)

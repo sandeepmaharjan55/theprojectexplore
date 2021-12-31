@@ -7,12 +7,13 @@ const { isAdmin } = require("../../../middlewares/checkRole");
 const Destination = require("../../../models/destination/destination");
 var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
-
+const generateFrontEndToken = require("../../../middlewares/frontendauth");
+const jwt = require("jsonwebtoken");
 // @route:  GET api/destination/list
 // @desc:   get list of destination with detail
 // @access: auth
 
-router.get("/list", auth, async (req, res) => {
+router.get("/list", auth, isAdmin, async (req, res) => {
   try {
     let result = await Destination.find(
       {
@@ -39,9 +40,23 @@ router.get("/list", auth, async (req, res) => {
 // @route:  GET api/destination/listnoauth
 // @desc:   get list of destination with detail
 // @access: public
-router.get("/listnoauth", async (req, res) => {
+router.get("/listnoauth",
+// generateFrontEndToken,
+async (req, res) => {
   // console.log("scrolling");
   try {
+    // console.log(req.token);
+    // var token = req.headers['x-access-token'];
+    // const authHeader = req.headers.authorization;
+    // const token = authHeader && authHeader.split(" ")[1];
+    // console.log(token);
+    // jwt.verify(token, process.env.FRONTEND_JWT_SECRET, function(err, decoded) {
+    //   console.log("INSIDE VERIFY");
+    //   if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      
+    //   res.status(200).send(decoded);
+    // });
+
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
     // console.log(page, limit);
@@ -72,7 +87,7 @@ router.get("/listnoauth", async (req, res) => {
 // @route:  POST api/destination/store
 // @desc:   store destination
 // @access: auth
-router.post("/store", auth, async (req, res) => {
+router.post("/store", auth, isAdmin, async (req, res) => {
   try {
     var documentBody = {};
     if (req.body.name) documentBody.name = req.body.name;

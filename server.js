@@ -64,6 +64,7 @@ if (true || process.env.NODE_ENV === "production") {
   //   res.sendFile(path.resolve(__dirname, "projectFrontend", "index.html"));
   // });
 }
+
 // app.use("/uploads", express.static("uploads"));
 //booted up the server
 app.listen(PORT, (err) => {

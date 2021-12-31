@@ -15,7 +15,7 @@ var fs = require('fs');
 // @desc:   get list of destination gallery
 // @access: auth
 
-router.get("/list", auth, async (req, res) => {
+router.get("/list", auth, isAdmin, async (req, res) => {
   try {
     let result = await DestinationGallery.find(
       {
@@ -48,7 +48,7 @@ router.get("/list", auth, async (req, res) => {
 // @route:  POST api/destinationgallery/store
 // @desc:   store destination gallery
 // @access: auth
-router.post("/store", auth, async (req, res) => {
+router.post("/store", auth, isAdmin, async (req, res) => {
   try {
     var documentBody = {};
     if (req.body.destination) documentBody.destination = req.body.destination;
@@ -82,16 +82,17 @@ router.post("/store", auth, async (req, res) => {
           file[i].mimetype == "image/jpg" ||
           file[i].mimetype == "image/jpeg"
         ) {
-         // console.log("here");
+         console.log("here");
        //   console.log(resultDestData.name );
           var dir = `${__dirname}/../../../public/files/destination/nepal/`+ destinationNameResult +`/`+ req.body.type;
        //  console.log(dir);
           if (!fs.existsSync(dir)){
-            //console.log("directory created");
+            console.log("directory created");
             fs.mkdirSync(dir, { recursive: true });
           }
           let randomUUID = uuidv4();
-          const systemImageUrl = `${__dirname}/../../../public/files/destination/nepal/`+resultDestData.name+`/`+ req.body.type + `/${
+          console.log("here after uuid");
+          const systemImageUrl = `${__dirname}/../../../public/files/destination/nepal/`+ destinationNameResult+`/`+ req.body.type + `/${
             randomUUID + "-" + file[i].name.toLowerCase().split(" ").join("-")
           }`;
           const imageUrlToSave = `public/files/destination/nepal/`+ destinationNameResult +`/`+ req.body.type + `/${
@@ -141,7 +142,7 @@ router.post("/store", auth, async (req, res) => {
 
 router.post(
 	"/delete",
-auth,
+auth, isAdmin,
 	async (req, res) => {
 		try {
       // console.log("m here delete");

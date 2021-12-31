@@ -17,7 +17,7 @@ var fs = require('fs');
 // @desc:   get list of destination event
 // @access: auth
 
-router.get("/list", auth, async (req, res) => {
+router.get("/list", auth, isAdmin, async (req, res) => {
   try {
     let result = await DestinationEvent.find(
       {
@@ -50,7 +50,7 @@ router.get("/list", auth, async (req, res) => {
 // @route:  POST api/destinationevent/store
 // @desc:   store destination event
 // @access: auth
-router.post("/store", auth, async (req, res) => {
+router.post("/store", auth, isAdmin, async (req, res) => {
   try {
    
     var documentBody = {};
@@ -147,7 +147,7 @@ router.post("/store", auth, async (req, res) => {
 
 router.post(
 	"/delete",
-auth,
+auth, isAdmin,
 	async (req, res) => {
 		try {
       // console.log("m here delete");
