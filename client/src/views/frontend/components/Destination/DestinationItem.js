@@ -1,15 +1,16 @@
 import classes from "./dataCard.module.css";
 import imageTextClasses from "./dataCardImageText.module.css";
-
-import { Card, CardImg, Col, Progress } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { Card, CardImg, Col, Progress} from "reactstrap";
 import "font-awesome/css/font-awesome.min.css";
 
 function DestinationItem(props) {
-  // console.log(props.index);
+//console.log(props.destinationSlug);
   return (
-    <Col xs="12" lg="3" key={props.index}>
+    <Link to={() => `nepal/${props.destinationSlug}`}>
+      {/* <Link to={() => `nepal/${props.destinationSlug}?sort=name`}> */}
       <div
-        ref={props.lastDestinationElementRef}
+        ref={props.lastDestinationElement}
         key={props.destination}
         className={classes.containerTest}
       >
@@ -122,7 +123,7 @@ function DestinationItem(props) {
           </div>
         </Card>
       </div>
-    </Col>
+     </Link>
   );
 }
 export default DestinationItem;

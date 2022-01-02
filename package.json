@@ -55,8 +55,9 @@
 				"passport-facebook": "^2.1.1",
 				"passport-google-oauth20": "^1.0.0",
 				"passport-jwt": "^4.0.0",
-				"randomstring": "^1.1.5",
+				"randomstring": "^1.2.1",
 				"request": "^2.88.0",
+				"slugify": "^1.6.4",
 				"validator": "10.5.0",
 				"x-xss-protection": "^2.0.0"
 		}

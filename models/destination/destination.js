@@ -18,6 +18,7 @@ const schema = Schema({
   bestSeasons: String,
   accomodation: String,
   maxAltitude: String,
+  slug:String,
   flag: {
     type: Boolean,
     default: true,

@@ -9,6 +9,8 @@ var mongoose = require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 const generateFrontEndToken = require("../../../middlewares/frontendauth");
 const jwt = require("jsonwebtoken");
+const slugify = require('slugify');
+const randomstring = require("randomstring");
 // @route:  GET api/destination/list
 // @desc:   get list of destination with detail
 // @access: auth
@@ -67,7 +69,7 @@ async (req, res) => {
       {
         flag: true,
       },
-       "name subName desC type difficulty minDays bestSeasons accomodation maxAltitude"
+       "name subName desC type difficulty minDays bestSeasons accomodation maxAltitude slug"
     )
       .sort({ createdDate: -1 })
       .lean();
@@ -90,7 +92,25 @@ async (req, res) => {
 router.post("/store", auth, isAdmin, async (req, res) => {
   try {
     var documentBody = {};
-    if (req.body.name) documentBody.name = req.body.name;
+    if (req.body.name){
+      documentBody.name = req.body.name;
+      documentBody.slug = slugify(req.body.name, {
+        replacement: '-',  // replace spaces with replacement character, defaults to `-`
+        remove: undefined, // remove characters that match regex, defaults to `undefined`
+        lower: true,      // convert to lower case, defaults to `false`
+        strict: false,     // strip special characters except replacement, defaults to `false`
+        locale: 'vi',       // language code of the locale to use
+        trim: true         // trim leading and trailing replacement chars, defaults to `true`
+      }) + '-' + slugify(req.body.subName, {
+        replacement: '-',  // replace spaces with replacement character, defaults to `-`
+        remove: undefined, // remove characters that match regex, defaults to `undefined`
+        lower: true,      // convert to lower case, defaults to `false`
+        strict: false,     // strip special characters except replacement, defaults to `false`
+        locale: 'vi',       // language code of the locale to use
+        trim: true         // trim leading and trailing replacement chars, defaults to `true`
+      })+ '-' + randomstring.generate(15);
+      //console.log(documentBody.slug);
+    }
     if (req.body.subName) documentBody.subName = req.body.subName;
     if (req.body.desC) documentBody.desC = req.body.desC;
     if (req.body.isRecommended)

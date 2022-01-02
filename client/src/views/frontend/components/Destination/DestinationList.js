@@ -11,10 +11,12 @@ import {
   Container,
   Row,
   Col,
+  Progress
 } from "reactstrap";
 import 'font-awesome/css/font-awesome.min.css';
 import DestinationItem from "./DestinationItem";
-
+import classes from "./dataCard.module.css";
+import imageTextClasses from "./dataCardImageText.module.css";
 function Destination() {
   const [limitNumber, setLimit] = useState(8);
   const [pageNumber, setPageNumber] = useState(1);
@@ -60,15 +62,18 @@ function Destination() {
               }}
             >
               {destinations.map((destination, index) => {
+                // console.log(destination);
                 if (destinations.length === index + 1) {
                   //   return <div ref={lastDestinationElementRef} key={destination}>{destination}</div>
 
                   return (
+                    <Col xs="12" lg="3" key={index}>
                     <DestinationItem
-                    lastDestinationElementRef={lastDestinationElementRef}
-                    destination={destination}
-                    index={index}
+                    lastDestinationElement={lastDestinationElementRef}
+                    destination={destination.name}
+                    destinationSlug={destination.slug}
                   />
+                  </Col>
                     // <Col xs="12" lg="3" key={index}>
                     //   <div
                     //     ref={lastDestinationElementRef}
@@ -166,10 +171,12 @@ function Destination() {
                   );
                 } else {
                   return (
+                    <Col xs="12" lg="3" key={index}>
                     <DestinationItem
-                    destination={destination}
-                    index={index}
+                    destination={destination.name}
+                    destinationSlug={destination.slug}
                   />
+                  </Col>
                     // <Col xs="12" lg="3" key={index}>
                     //   <div key={destination} className={classes.containerTest}>
                     //     <Card

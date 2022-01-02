@@ -27,10 +27,11 @@ export default function useDestinationSearch(limitNumber, pageNumber) {
       params: { limit: limitNumber, page: pageNumber },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
-        console.log(res.data);
+       // console.log(res.data);
       setDestinations(prevDestinations => {
-        return [...new Set([...prevDestinations, ...res.data.data.map(b => b.name)])]
+        return [...new Set([...prevDestinations, ...res.data.data])]
       })
+      console.log(destinations);
       setHasMore(res.data.data.length > 0)
       setLoading(false)
     }).catch(e => {
