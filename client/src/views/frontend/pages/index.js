@@ -2,7 +2,7 @@ import React, { Component, Fragment} from "react";
 import NavbarSection from "../components/Navbar/MainNavigation";
 import CarouselSection from "../components/Header/Carousel";
 import VideoSection from "../components/Header/VideoSection";
-import DataCard from "../components/DataCard/DataCards";
+import DestinationList from "../components/Destination/DestinationList";
 import FooterSection from "../components/Footer/Footer";
 // import '../components/modal/modal.css';
 
@@ -17,7 +17,7 @@ export class IndexPage extends Component {
         <NavbarSection />
         <VideoSection />
         {/* <CarouselSection /> */}
-        <DataCard />
+        <DestinationList />
         <FooterSection />
       </div>
     );

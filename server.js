@@ -6,7 +6,8 @@ require("dotenv").config({
   path: path.join(__dirname, ".env"),
 });
 var bodyParser = require("body-parser");
-
+const xXssProtection = require("x-xss-protection");
+const helmet = require("helmet");
 //import local modules
 
 // define global variables
@@ -64,6 +65,8 @@ if (true || process.env.NODE_ENV === "production") {
   //   res.sendFile(path.resolve(__dirname, "projectFrontend", "index.html"));
   // });
 }
+app.use(xXssProtection());
+app.use(helmet());
 
 // app.use("/uploads", express.static("uploads"));
 //booted up the server
